@@ -60,7 +60,7 @@ export default function FreeAuditPage() {
                   <span className="text-sm text-white/70 font-semibold">4.9/5 from 17+ clients</span>
                 </div>
                 <p className="text-sm text-white/50 italic leading-relaxed">
-                  &ldquo;The free audit alone was worth more than what other agencies charged us for a full consultation. Nishant showed us exactly where we were bleeding money.&rdquo;
+                  &ldquo;The free audit alone was worth more than what other agencies charged us for a full consultation. The Numero Uno team showed us exactly where we were bleeding money.&rdquo;
                 </p>
                 <div className="text-sm text-muted mt-2">— Dr. Priya M., Dental Clinic Owner</div>
               </div>

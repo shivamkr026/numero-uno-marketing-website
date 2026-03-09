@@ -12,7 +12,7 @@ export const caseStudies = [
       { metric: "6.8x", label: "ROAS on Meta Ads" },
       { metric: "45", label: "Days to Results" }
     ],
-    testimonial: "Instagram was dead. Now we get 89 bookings/month. Nishant fixed it in 45 days.",
+    testimonial: "Instagram was dead. Now we get 89 bookings/month. The Numero Uno team fixed it in 45 days.",
     testimonialAuthor: "Rajesh K., Owner"
   },
   {

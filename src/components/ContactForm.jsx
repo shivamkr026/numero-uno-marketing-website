@@ -21,7 +21,7 @@ export default function ContactForm({ compact = false }) {
           Request Received!
         </h3>
         <p className="text-sm text-muted">
-          Nishant will reach out within 24 hours via WhatsApp.
+          Our team will reach out within 24 hours via WhatsApp.
         </p>
       </div>
     );

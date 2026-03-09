@@ -3,7 +3,7 @@ export const testimonials = [
     name: "Rajesh K.",
     role: "Restaurant Chain Owner",
     location: "Bangalore",
-    quote: "Instagram was dead. Now we get 89 bookings/month. Nishant fixed it in 45 days.",
+    quote: "Instagram was dead. Now we get 89 bookings/month. The Numero Uno team fixed it in 45 days.",
     metric: "₹4.2L → ₹12.8L",
     metricLabel: "Monthly Revenue",
     stats: [

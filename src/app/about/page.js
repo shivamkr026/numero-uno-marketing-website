@@ -4,7 +4,7 @@ import CTASection from "@/components/CTASection";
 
 export const metadata = {
   title: "About Numero Uno Marketing — Our Story & Mission",
-  description: "Meet Nishant Sahay and the team behind Numero Uno Marketing. MBA + IT expertise, startup DNA, and a mission to empower Bangalore MSMEs with data-driven digital marketing.",
+  description: "Meet the team behind Numero Uno Marketing. MBA + IT expertise, startup DNA, and a mission to empower Bangalore MSMEs with data-driven digital marketing.",
 };
 
 const values = [
