@@ -39,22 +39,13 @@ export default function Footer() {
             </p>
             <div className="flex gap-3">
               <a
-                href="https://www.linkedin.com/company/numerounomarketing"
+                href="https://www.linkedin.com/company/numero-uno-marketing-private-limited/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 border border-border rounded-lg flex items-center justify-center text-sm text-muted hover:border-green hover:text-green transition-colors no-underline"
                 aria-label="LinkedIn"
               >
                 in
-              </a>
-              <a
-                href="https://www.instagram.com/numerounomarketing"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 border border-border rounded-lg flex items-center justify-center text-sm text-muted hover:border-green hover:text-green transition-colors no-underline"
-                aria-label="Instagram"
-              >
-                ig
               </a>
               <a
                 href="https://wa.me/919902633980"
