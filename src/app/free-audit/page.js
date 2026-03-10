@@ -72,7 +72,10 @@ export default function FreeAuditPage() {
                 Request Your Free Audit
               </h2>
               <p className="text-sm text-muted mb-6">Takes 60 seconds. Response within 24 hours.</p>
-              <ContactForm />
+              <ContactForm 
+                actionUrl="https://formspree.io/f/xwvrllgy"
+                source="Free Audit Page"
+              />
             </div>
           </div>
         </div>
