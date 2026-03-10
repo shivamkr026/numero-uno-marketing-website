@@ -74,7 +74,7 @@ export default function ContactPage() {
 
                 {/* Call / WhatsApp */}
                 <a
-                  href="tel:+919693220791"
+                  href="tel:+919902633980"
                   className="flex items-center gap-5 group no-underline"
                 >
                   <div className="w-14 h-14 bg-card border border-border rounded-2xl flex items-center justify-center shrink-0">
@@ -83,7 +83,7 @@ export default function ContactPage() {
                   <div>
                     <div className="text-[13px] text-muted mb-0.5">Call / WhatsApp</div>
                     <div className="font-[family-name:var(--font-heading)] text-[15px] font-bold text-white transition-colors">
-                      (+91) 96932 20791
+                      (+91) 99026 33980
                     </div>
                   </div>
                 </a>

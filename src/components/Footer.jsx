@@ -57,7 +57,7 @@ export default function Footer() {
                 ig
               </a>
               <a
-                href="https://wa.me/919693220791"
+                href="https://wa.me/919902633980"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 border border-border rounded-lg flex items-center justify-center text-sm text-muted hover:border-green hover:text-green transition-colors no-underline"
@@ -118,11 +118,11 @@ export default function Footer() {
                 hello@numerounomarketing.com
               </a>
               <a
-                href="tel:+919693220791"
+                href="tel:+919902633980"
                 className="flex items-center gap-2 text-sm text-white/45 hover:text-white transition-colors no-underline"
               >
                 <Phone size={14} />
-                +91 96932 20791
+                +91 99026 33980
               </a>
               <span className="flex items-center gap-2 text-sm text-muted">
                 <MapPin size={14} />

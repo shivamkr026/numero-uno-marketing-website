@@ -493,17 +493,6 @@ export default function HomePage() {
         secondaryHref="/case-studies"
       />
 
-      {/* WhatsApp FAB */}
-      <a
-        href="https://wa.me/919693220791?text=Hi%20Numero%20Uno%20team%2C%20I%20saw%20your%20website%20and%20want%20to%20know%20more!"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-7 right-7 z-[500] w-14 h-14 bg-gradient-to-br from-green to-green-dark rounded-full flex items-center justify-center text-2xl shadow-lg shadow-green/40 hover:scale-110 transition-transform no-underline"
-        title="Chat on WhatsApp"
-        aria-label="Chat on WhatsApp"
-      >
-        💬
-      </a>
     </>
   );
 }

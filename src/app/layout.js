@@ -2,6 +2,7 @@ import { Sora, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import WhatsAppFAB from "@/components/WhatsAppFAB";
 
 const sora = Sora({
   variable: "--font-heading",
@@ -40,6 +41,7 @@ export default function RootLayout({ children }) {
         <Nav />
         <main>{children}</main>
         <Footer />
+        <WhatsAppFAB />
       </body>
     </html>
   );

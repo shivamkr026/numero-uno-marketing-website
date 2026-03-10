@@ -1,20 +1,25 @@
 "use client";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Menu, X, ArrowRight } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
-  { href: "/about", label: "About" },
+  { href: "/about", label: "About Us" },
   { href: "/case-studies", label: "Case Studies" },
   { href: "/testimonials", label: "Testimonials" },
   { href: "/contact", label: "Contact" },
 ];
 
 export default function Nav() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const isActive = (href) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -52,7 +57,11 @@ export default function Nav() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-white/55 hover:text-white transition-colors no-underline"
+              className={`text-sm transition-colors no-underline ${
+                isActive(link.href)
+                  ? "text-green font-semibold"
+                  : "text-white/55 hover:text-white"
+              }`}
             >
               {link.label}
             </Link>
@@ -76,9 +85,9 @@ export default function Nav() {
         </button>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — full viewport overlay */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-[200] bg-navy/97 backdrop-blur-xl flex flex-col items-center justify-center gap-8">
+        <div className="fixed inset-0 z-[200] w-full h-full bg-navy/97 backdrop-blur-xl flex flex-col items-center justify-center gap-8">
           <button
             onClick={() => setMobileOpen(false)}
             className="absolute top-6 right-6 text-white"
@@ -86,16 +95,24 @@ export default function Nav() {
           >
             <X size={28} />
           </button>
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMobileOpen(false)}
-              className="font-[family-name:var(--font-heading)] text-2xl font-bold text-white no-underline hover:text-green transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const active = isActive(link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                className={`font-[family-name:var(--font-heading)] text-2xl font-bold no-underline transition-colors flex items-center gap-3 ${
+                  active ? "text-green" : "text-white hover:text-green"
+                }`}
+              >
+                {active && (
+                  <span className="w-2 h-2 bg-green rounded-full shrink-0" />
+                )}
+                {link.label}
+              </Link>
+            );
+          })}
           <Link
             href="/free-audit"
             onClick={() => setMobileOpen(false)}
