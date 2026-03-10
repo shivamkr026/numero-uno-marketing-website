@@ -109,7 +109,10 @@ export default function ContactPage() {
                   <div className="text-[13px] text-muted">15 minutes. Same/next day slot.</div>
                 </div>
               </div>
-              <ContactForm />
+              <ContactForm 
+                actionUrl="https://formspree.io/f/mlgpjjyg"
+                source="Contact Page - Schedule Call"
+              />
             </div>
           </div>        </div>
       </section>

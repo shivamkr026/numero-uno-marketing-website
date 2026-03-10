@@ -1,7 +1,11 @@
 "use client";
 import { useState } from "react";
 
-export default function ContactForm({ compact = false }) {
+export default function ContactForm({
+  compact = false,
+  actionUrl = "https://formspree.io/f/xlgpjjdl",
+  source = "",
+}) {
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -43,8 +47,9 @@ export default function ContactForm({ compact = false }) {
   }
 
   return (
-    <form action="https://formspree.io/f/xlgpjjdl" method="POST" onSubmit={handleSubmit} className="flex flex-col gap-4">
+    <form action={actionUrl} method="POST" onSubmit={handleSubmit} className="flex flex-col gap-4">
       <input type="text" name="_gotcha" style={{ display: "none" }} />
+      {source && <input type="hidden" name="source" value={source} />}
       <div className={`grid ${compact ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"} gap-3`}>
         <div>
           <label htmlFor="cf-name">Your Name</label>
