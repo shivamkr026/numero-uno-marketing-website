@@ -4,13 +4,28 @@ import { useState } from "react";
 export default function ContactForm({ compact = false }) {
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
+    const form = e.target;
+    const formData = new FormData(form);
     const biz = formData.get("business");
     const phone = formData.get("phone");
     if (!biz || !phone) return;
-    setSubmitted(true);
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+      if (response.ok) {
+        setSubmitted(true);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   if (submitted) {
@@ -28,7 +43,8 @@ export default function ContactForm({ compact = false }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+    <form action="https://formspree.io/f/xlgpjjdl" method="POST" onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <input type="text" name="_gotcha" style={{ display: "none" }} />
       <div className={`grid ${compact ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"} gap-3`}>
         <div>
           <label htmlFor="cf-name">Your Name</label>
