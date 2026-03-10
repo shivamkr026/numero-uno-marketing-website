@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Numero Uno Marketing — Grow Without Limits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --navy:   #0C1220;
+      --navy2:  #111827;
+      --slate:  #1E2D40;
+      --green:  #22C55E;
+      --green2: #16A34A;
+      --lime:   #A3E635;
+      --orange: #F97316;
+      --amber:  #FBBF24;
+      --white:  #F8FAFC;
+      --muted:  #94A3B8;
+      --card:   rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.09);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+      cursor: none;
+    }
+    h1,h2,h3,h4 { font-family: 'Sora', sans-serif; }
+
+    /* ─── CURSOR ─── */
+    #cur { position:fixed;width:10px;height:10px;background:var(--green);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s; }
+    #cur-ring { position:fixed;width:34px;height:34px;border:1.5px solid rgba(34,197,94,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,opacity .3s; }
+    body:has(a:hover) #cur, body:has(button:hover) #cur { width:18px;height:18px; }
+    body:has(a:hover) #cur-ring, body:has(button:hover) #cur-ring { width:52px;height:52px;opacity:.4; }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width:4px; }
+    ::-webkit-scrollbar-track { background:var(--navy2); }
+    ::-webkit-scrollbar-thumb { background:var(--green);border-radius:2px; }
+
+    /* ─── NAV ─── */
+    #nav {
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      padding:22px 48px;
+      display:flex;align-items:center;justify-content:space-between;
+      transition:padding .4s,background .4s,border-color .4s;
+      border-bottom:1px solid transparent;
+    }
+    #nav.scrolled {
+      background:rgba(12,18,32,.92);
+      backdrop-filter:blur(18px);
+      padding:14px 48px;
+      border-bottom-color:var(--border);
+    }
+    .nav-logo { font-family:'Sora',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.5px;color:var(--white);text-decoration:none; }
+    .nav-logo span { color:var(--green); }
+    .nav-links { display:flex;gap:36px;list-style:none; }
+    .nav-links a { font-size:14px;color:rgba(248,250,252,.55);text-decoration:none;transition:color .2s; }
+    .nav-links a:hover { color:var(--white); }
+    .nav-cta {
+      background:var(--green);color:#0C1220 !important;
+      padding:10px 22px;border-radius:8px;
+      font-weight:600 !important;font-size:13px !important;
+      transition:background .2s,transform .2s !important;
+    }
+    .nav-cta:hover { background:#16c14e !important;transform:translateY(-1px); }
+    .nav-mobile-btn { display:none;cursor:none;background:none;border:none;color:var(--white);font-size:22px;padding:4px; }
+    .mobile-menu { display:none;position:fixed;inset:0;background:rgba(12,18,32,.97);backdrop-filter:blur(20px);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:32px; }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a { font-family:'Sora',sans-serif;font-size:28px;font-weight:700;color:var(--white);text-decoration:none; }
+    .mobile-menu .close-btn { position:absolute;top:24px;right:32px;font-size:28px;background:none;border:none;color:var(--white);cursor:none; }
+    @media(max-width:900px){
+      .nav-links,.nav-cta{display:none;}
+      .nav-mobile-btn{display:block;}
+      #nav,#nav.scrolled{padding:16px 24px;}
+      section{padding-left:24px !important;padding-right:24px !important;}
+    }
+
+    /* ─── HERO ─── */
+    .hero-bg {
+      background: radial-gradient(ellipse 80% 60% at 20% 40%, rgba(34,197,94,.1) 0%, transparent 60%),
+                  radial-gradient(ellipse 60% 50% at 80% 70%, rgba(249,115,22,.07) 0%, transparent 60%),
+                  linear-gradient(160deg, #0C1220 0%, #111827 50%, #0f1c2e 100%);
+    }
+    .grid-overlay {
+      position:absolute;inset:0;
+      background-image: linear-gradient(rgba(34,197,94,.035) 1px,transparent 1px),
+                        linear-gradient(90deg,rgba(34,197,94,.035) 1px,transparent 1px);
+      background-size:60px 60px;
+      mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);
+    }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeIn { from{opacity:0}to{opacity:1} }
+    @keyframes floatCard { 0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)} }
+    @keyframes pulse2 { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)} }
+    @keyframes marquee { from{transform:translateX(0)}to{transform:translateX(-50%)} }
+    @keyframes lineGrow { from{height:0}to{height:80px} }
+    @keyframes countUp { from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)} }
+
+    .anim-1 { opacity:0;animation:fadeUp .8s .2s forwards; }
+    .anim-2 { opacity:0;animation:fadeUp .9s .4s forwards; }
+    .anim-3 { opacity:0;animation:fadeUp .9s .65s forwards; }
+    .anim-4 { opacity:0;animation:fadeUp .9s .9s forwards; }
+
+    .badge {
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);
+      border-radius:100px;padding:6px 18px;
+      font-size:13px;font-weight:500;color:var(--green);letter-spacing:.5px;
+    }
+    .badge-dot { width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse2 2s infinite; }
+
+    .btn-primary {
+      display:inline-flex;align-items:center;gap:10px;
+      background:var(--green);color:#0C1220;
+      font-family:'Sora',sans-serif;font-weight:700;font-size:15px;
+      padding:15px 32px;border-radius:10px;border:none;cursor:none;
+      transition:transform .2s,box-shadow .2s,background .2s;text-decoration:none;
+    }
+    .btn-primary:hover { transform:translateY(-2px);box-shadow:0 12px 36px rgba(34,197,94,.3);background:#16c14e; }
+    .btn-ghost {
+      display:inline-flex;align-items:center;gap:10px;
+      background:transparent;color:var(--white);
+      font-family:'Sora',sans-serif;font-weight:600;font-size:15px;
+      padding:14px 30px;border-radius:10px;border:1.5px solid var(--border);cursor:none;
+      transition:border-color .2s,color .2s,background .2s;text-decoration:none;
+    }
+    .btn-ghost:hover { border-color:rgba(34,197,94,.4);background:rgba(34,197,94,.06); }
+
+    .float-card {
+      background:rgba(255,255,255,.06);
+      backdrop-filter:blur(16px);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:14px 20px;
+      display:flex;align-items:center;gap:10px;
+      font-size:13px;font-weight:500;
+      animation:floatCard 4s ease-in-out infinite;
+    }
+
+    /* ─── MARQUEE STRIP ─── */
+    .marquee-strip { overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0;background:rgba(255,255,255,.02); }
+    .marquee-track { display:flex;gap:52px;animation:marquee 22s linear infinite;white-space:nowrap; }
+    .marquee-item { display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);flex-shrink:0; }
+    .marquee-item .dot { color:var(--green);font-size:18px; }
+
+    /* ─── REVEAL ─── */
+    .reveal { opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease; }
+    .reveal.visible { opacity:1;transform:translateY(0); }
+    .reveal-delay-1.visible { transition-delay:.1s; }
+    .reveal-delay-2.visible { transition-delay:.2s; }
+    .reveal-delay-3.visible { transition-delay:.3s; }
+    .reveal-delay-4.visible { transition-delay:.4s; }
+
+    /* ─── SECTION LABELS ─── */
+    .sec-label {
+      display:inline-flex;align-items:center;gap:10px;
+      font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:16px;
+    }
+    .sec-label::before { content:'';width:28px;height:1px;background:var(--green); }
+    .sec-title { font-family:'Sora',sans-serif;font-size:clamp(32px,4vw,56px);font-weight:800;letter-spacing:-1.5px;line-height:1.08;margin-bottom:20px; }
+    .sec-title .outline { color:transparent;-webkit-text-stroke:1px rgba(248,250,252,.2); }
+    .sec-title .green { color:var(--green); }
+
+    /* ─── CARDS ─── */
+    .card {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      transition:background .3s,border-color .3s,transform .3s,box-shadow .3s;
+    }
+    .card:hover { background:rgba(255,255,255,.07);border-color:rgba(34,197,94,.25);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.3); }
+
+    /* ─── SERVICES ─── */
+    .service-card { padding:36px 32px;border-radius:16px;position:relative;overflow:hidden;cursor:none; }
+    .service-card::after {
+      content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+      transform:scaleX(0);transform-origin:left;transition:transform .4s ease;
+    }
+    .service-card:hover::after { transform:scaleX(1); }
+    .service-card.green-accent::after { background:var(--green); }
+    .service-card.orange-accent::after { background:var(--orange); }
+    .service-card.blue-accent::after { background:#60A5FA; }
+    .service-card.purple-accent::after { background:#A78BFA; }
+    .service-card.indigo-accent::after { background:#818CF8; }
+    .service-icon { width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px;transition:transform .3s; }
+    .service-card:hover .service-icon { transform:scale(1.1) rotate(6deg); }
+    .service-price { font-family:'Sora',sans-serif;font-size:22px;font-weight:800;color:var(--green);margin-top:20px; }
+    .service-tag { display:inline-block;background:rgba(34,197,94,.15);color:var(--green);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:4px;margin-top:8px; }
+
+    /* ─── METRICS ─── */
+    .metric-num { font-family:'Sora',sans-serif;font-size:clamp(42px,5vw,68px);font-weight:800;letter-spacing:-2px;line-height:1; }
+
+    /* ─── TESTIMONIALS ─── */
+    .test-card { padding:40px 36px;position:relative; }
+    .test-card .big-quote { font-size:60px;line-height:1;color:var(--green);opacity:.4;font-family:Georgia,serif;margin-bottom:8px; }
+    .test-metric { font-family:'Sora',sans-serif;font-size:clamp(28px,3vw,40px);font-weight:800;color:var(--green);letter-spacing:-1px; }
+
+    /* ─── PROCESS STEPS ─── */
+    .step-num { font-family:'Sora',sans-serif;font-size:80px;font-weight:800;color:rgba(248,250,252,.04);line-height:1;letter-spacing:-4px;margin-bottom:16px; }
+    .step-title { font-family:'Sora',sans-serif;font-size:18px;font-weight:700;margin-bottom:10px; }
+
+    /* ─── ABOUT ─── */
+    .timeline-dot { width:12px;height:12px;background:var(--green);border-radius:50%;flex-shrink:0;margin-top:5px; }
+    .timeline-line { width:1px;background:rgba(34,197,94,.2);flex:1;min-height:40px;margin:4px 0 4px 5.5px; }
+
+    /* ─── CONTACT ─── */
+    .wa-btn {
+      display:inline-flex;align-items:center;gap:12px;
+      background:linear-gradient(135deg,#22C55E,#16A34A);
+      color:#fff;font-family:'Sora',sans-serif;font-weight:700;font-size:16px;
+      padding:18px 36px;border-radius:12px;text-decoration:none;cursor:none;
+      transition:transform .2s,box-shadow .2s;border:none;width:100%;justify-content:center;
+    }
+    .wa-btn:hover { transform:translateY(-2px);box-shadow:0 14px 40px rgba(34,197,94,.35); }
+    input,select,textarea {
+      width:100%;background:rgba(255,255,255,.05);
+      border:1.5px solid var(--border);border-radius:10px;
+      padding:13px 16px;color:var(--white);
+      font-family:'DM Sans',sans-serif;font-size:14px;outline:none;
+      transition:border-color .2s,background .2s;
+    }
+    input:focus,select:focus,textarea:focus { border-color:rgba(34,197,94,.5);background:rgba(255,255,255,.07); }
+    select option { background:#111827; }
+    label { display:block;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:6px; }
+    textarea { resize:vertical;min-height:110px; }
+    .trust-chip { display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(248,250,252,.55); }
+    .trust-chip .dot { width:6px;height:6px;background:var(--green);border-radius:50%; }
+
+    /* ─── FOOTER ─── */
+    footer { background:#080d15;border-top:1px solid var(--border); }
+    .foot-link { color:rgba(248,250,252,.45);text-decoration:none;font-size:14px;transition:color .2s; }
+    .foot-link:hover { color:var(--white); }
+    .social-btn { width:36px;height:36px;border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);cursor:none;text-decoration:none;transition:border-color .2s,color .2s; }
+    .social-btn:hover { border-color:var(--green);color:var(--green); }
+
+    /* ─── WA FAB ─── */
+    #wa-fab {
+      position:fixed;bottom:28px;right:28px;z-index:500;
+      width:56px;height:56px;background:linear-gradient(135deg,#22C55E,#16A34A);
+      border-radius:50%;display:flex;align-items:center;justify-content:center;
+      font-size:26px;cursor:none;box-shadow:0 6px 24px rgba(34,197,94,.4);
+      text-decoration:none;transition:transform .2s,box-shadow .2s;
+    }
+    #wa-fab:hover { transform:scale(1.1);box-shadow:0 10px 32px rgba(34,197,94,.55); }
+    #wa-fab::before {
+      content:'';position:absolute;inset:-4px;border-radius:50%;
+      border:2px solid rgba(34,197,94,.35);
+      animation:ping 2s ease-in-out infinite;
+    }
+    @keyframes ping { 0%{transform:scale(1);opacity:.8}80%,100%{transform:scale(1.5);opacity:0} }
+
+    @media(max-width:768px) {
+      .sec-title { letter-spacing:-1px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- WA FAB -->
+<a href="https://wa.me/919876543210?text=Hi%20Nishant%2C%20I%20saw%20your%20website%20and%20want%20to%20know%20more!" id="wa-fab" target="_blank" title="Chat on WhatsApp">💬</a>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-btn" id="menuClose">✕</button>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#testimonials" onclick="closeMobile()">Results</a>
+  <a href="#contact" onclick="closeMobile()" style="color:var(--green)">Get Free Audit</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Numero<span>Uno</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#testimonials">Results</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Free Audit →</a></li>
+  </ul>
+  <button class="nav-mobile-btn" id="menuOpen">☰</button>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════════════════════ -->
+<section class="hero-bg min-h-screen flex flex-col justify-center pt-28 pb-20 px-12 relative overflow-hidden" id="home">
+  <div class="grid-overlay"></div>
+
+  <div class="max-w-7xl mx-auto w-full relative z-10">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- LEFT -->
+      <div>
+        <div class="badge anim-1 mb-6">
+          <span class="badge-dot"></span>
+          🚀 Digital Growth Agency · Bengaluru
+        </div>
+
+        <h1 class="anim-2" style="font-family:'Sora',sans-serif;font-size:clamp(44px,6vw,82px);font-weight:800;line-height:.97;letter-spacing:-2.5px;margin-bottom:24px;">
+          Scale Your<br>
+          <span style="color:var(--green);">Business</span><br>
+          <span style="color:transparent;-webkit-text-stroke:1px rgba(248,250,252,.25);">Without Limits</span>
+        </h1>
+
+        <p class="anim-3" style="font-size:17px;line-height:1.8;color:rgba(248,250,252,.6);max-width:400px;margin-bottom:36px;">
+          Websites · Social Media · Performance Ads · AI Tools · SEO<br>
+          <span style="color:var(--green);font-weight:600;">Clear pricing. No lock-in. Bengaluru-focused.</span>
+        </p>
+
+        <div class="anim-4 flex flex-col sm:flex-row gap-4">
+          <a href="#contact" class="btn-primary">
+            Start Free Audit
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href="#services" class="btn-ghost">View Services</a>
+        </div>
+
+        <!-- Trust bar -->
+        <div class="anim-4 flex flex-wrap gap-x-6 gap-y-3 mt-10">
+          <div class="trust-chip"><span class="dot"></span>17+ Active Clients</div>
+          <div class="trust-chip"><span class="dot"></span>₹10Cr+ Revenue Generated</div>
+          <div class="trust-chip"><span class="dot"></span>⭐ 4.9/5 Rating</div>
+        </div>
+      </div>
+
+      <!-- RIGHT: visual dashboard mockup -->
+      <div class="relative hidden lg:block" style="animation:fadeIn 1s .8s both;">
+        <!-- Glow -->
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:380px;height:380px;background:radial-gradient(circle,rgba(34,197,94,.12),transparent 70%);pointer-events:none;"></div>
+
+        <!-- Main card -->
+        <div style="background:rgba(255,255,255,.05);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:32px;position:relative;">
+          <!-- Header row -->
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+            <div>
+              <div style="font-family:'Sora',sans-serif;font-size:13px;color:var(--muted);margin-bottom:2px;">This Month</div>
+              <div style="font-family:'Sora',sans-serif;font-size:26px;font-weight:800;color:var(--white);">Client Results</div>
+            </div>
+            <div style="background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);border-radius:8px;padding:6px 12px;font-size:12px;color:var(--green);font-weight:600;">↑ Live</div>
+          </div>
+
+          <!-- Metrics grid -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+            <div style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:12px;padding:16px;">
+              <div style="font-size:11px;color:var(--muted);margin-bottom:6px;letter-spacing:1px;text-transform:uppercase;">Avg. ROAS</div>
+              <div style="font-family:'Sora',sans-serif;font-size:32px;font-weight:800;color:var(--green);">8.2x</div>
+              <div style="font-size:11px;color:var(--green);margin-top:4px;">↑ +34% vs last mo</div>
+            </div>
+            <div style="background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.2);border-radius:12px;padding:16px;">
+              <div style="font-size:11px;color:var(--muted);margin-bottom:6px;letter-spacing:1px;text-transform:uppercase;">Leads Generated</div>
+              <div style="font-family:'Sora',sans-serif;font-size:32px;font-weight:800;color:var(--orange);">1,240</div>
+              <div style="font-size:11px;color:var(--orange);margin-top:4px;">↑ +61% vs last mo</div>
+            </div>
+            <div style="background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.2);border-radius:12px;padding:16px;">
+              <div style="font-size:11px;color:var(--muted);margin-bottom:6px;letter-spacing:1px;text-transform:uppercase;">Revenue Added</div>
+              <div style="font-family:'Sora',sans-serif;font-size:28px;font-weight:800;color:#60A5FA;">₹48L</div>
+              <div style="font-size:11px;color:#60A5FA;margin-top:4px;">across 17 clients</div>
+            </div>
+            <div style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);border-radius:12px;padding:16px;">
+              <div style="font-size:11px;color:var(--muted);margin-bottom:6px;letter-spacing:1px;text-transform:uppercase;">Cost Per Lead</div>
+              <div style="font-family:'Sora',sans-serif;font-size:28px;font-weight:800;color:#A78BFA;">₹148</div>
+              <div style="font-size:11px;color:#A78BFA;margin-top:4px;">↓ -63% optimised</div>
+            </div>
+          </div>
+
+          <!-- Mini bar chart -->
+          <div style="margin-bottom:8px;">
+            <div style="font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">Weekly Leads Trend</div>
+            <div style="display:flex;align-items:flex-end;gap:6px;height:52px;">
+              <div style="flex:1;background:rgba(34,197,94,.3);border-radius:4px 4px 0 0;height:40%;"></div>
+              <div style="flex:1;background:rgba(34,197,94,.4);border-radius:4px 4px 0 0;height:55%;"></div>
+              <div style="flex:1;background:rgba(34,197,94,.5);border-radius:4px 4px 0 0;height:70%;"></div>
+              <div style="flex:1;background:rgba(34,197,94,.6);border-radius:4px 4px 0 0;height:62%;"></div>
+              <div style="flex:1;background:rgba(34,197,94,.75);border-radius:4px 4px 0 0;height:85%;"></div>
+              <div style="flex:1;background:var(--green);border-radius:4px 4px 0 0;height:100%;box-shadow:0 0 12px rgba(34,197,94,.5);"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating chips -->
+        <div class="float-card" style="position:absolute;top:-20px;right:-20px;animation-delay:.5s;">
+          <span style="font-size:18px;">🎯</span>
+          <div>
+            <div style="font-size:12px;color:var(--muted);">Meta Ads</div>
+            <div style="font-family:'Sora',sans-serif;font-weight:700;color:var(--green);">6.8x ROAS</div>
+          </div>
+        </div>
+        <div class="float-card" style="position:absolute;bottom:-16px;left:-16px;animation-delay:1s;">
+          <span style="font-size:18px;">📈</span>
+          <div>
+            <div style="font-size:12px;color:var(--muted);">Organic Traffic</div>
+            <div style="font-family:'Sora',sans-serif;font-weight:700;color:var(--orange);">+340% Growth</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div style="position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;">
+    <div style="width:1px;height:0;background:linear-gradient(to bottom,transparent,var(--green));animation:lineGrow 1.2s 1.4s forwards;"></div>
+    <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);opacity:0;animation:fadeIn .6s 2s forwards;">Scroll</div>
+  </div>
+</section>
+
+
+<!-- MARQUEE STRIP -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="dot">✦</span>Performance Marketing</span>
+    <span class="marquee-item"><span class="dot">✦</span>Social Media Management</span>
+    <span class="marquee-item"><span class="dot">✦</span>Web Development</span>
+    <span class="marquee-item"><span class="dot">✦</span>AI Growth Tools</span>
+    <span class="marquee-item"><span class="dot">✦</span>SEO & Content</span>
+    <span class="marquee-item"><span class="dot">✦</span>Analytics & Reporting</span>
+    <span class="marquee-item"><span class="dot">✦</span>WhatsApp Automation</span>
+    <span class="marquee-item"><span class="dot">✦</span>Bengaluru MSMEs</span>
+    <!-- repeat -->
+    <span class="marquee-item"><span class="dot">✦</span>Performance Marketing</span>
+    <span class="marquee-item"><span class="dot">✦</span>Social Media Management</span>
+    <span class="marquee-item"><span class="dot">✦</span>Web Development</span>
+    <span class="marquee-item"><span class="dot">✦</span>AI Growth Tools</span>
+    <span class="marquee-item"><span class="dot">✦</span>SEO & Content</span>
+    <span class="marquee-item"><span class="dot">✦</span>Analytics & Reporting</span>
+    <span class="marquee-item"><span class="dot">✦</span>WhatsApp Automation</span>
+    <span class="marquee-item"><span class="dot">✦</span>Bengaluru MSMEs</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SERVICES SECTION
+═══════════════════════════════════════════════════ -->
+<section id="services" style="padding:100px 48px;background:var(--navy2);">
+  <div class="max-w-7xl mx-auto">
+
+    <!-- Header -->
+    <div class="reveal" style="max-width:600px;margin-bottom:60px;">
+      <div class="sec-label">Our Services</div>
+      <h2 class="sec-title">Growth Services<br>That Actually <span class="green">Deliver</span></h2>
+      <p style="font-size:16px;color:rgba(248,250,252,.5);line-height:1.8;">Fixed pricing for Bengaluru MSMEs. No lock-in contracts. Scale as you grow.</p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
+
+      <!-- AI Tools -->
+      <div class="card service-card green-accent reveal reveal-delay-1">
+        <div class="service-icon" style="background:rgba(96,165,250,.12);">🤖</div>
+        <div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:700;margin-bottom:12px;">AI Growth Tools</div>
+        <ul style="list-style:none;space-y:6px;">
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(248,250,252,.55);padding:4px 0;"><span style="width:5px;height:5px;background:#60A5FA;border-radius:50%;flex-shrink:0;"></span>ChatGPT campaign generator</li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(248,250,252,.55);padding:4px 0;"><span style="width:5px;height:5px;background:#60A5FA;border-radius:50%;flex-shrink:0;"></span>Predictive lead scoring</li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(248,250,252,.55);padding:4px 0;"><span style="width:5px;height:5px;background:#60A5FA;border-radius:50%;flex-shrink:0;"></span>Automated content creation</li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(248,250,252,.55);padding:4px 0;"><span style="width:5px;height:5px;background:#60A5FA;border-radius:50%;flex-shrink:0;"></span>Competitor AI insights</li>
+        </ul>
+        <div class="service-price">from ₹15,000<span style="font-size:14px;font-weight:400;color:var(--muted)">/mo</span></div>
+        <div class="service-tag">Most Popular</div>
+      </div>
+
+      <!-- Websites -->
+      <div class="card service-card green-accent reveal reveal-delay-2">
+        <div class="service-icon" style="background:rgba(34,197,94,.1);">🌐</div>
+        <div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:700;margin-bottom:12px;">Websites & Landing Pages</div>
+        <ul style="list-style:none;">
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(248,250,252,.55);padding:4px 0;"><span style="width:5px;height:5px;background:var(--green);border-radius:50%;flex-shrink:0;"></span>Fast-loading Webflow sites</li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(248,250,252,.55);padding:4px 0;"><span style="width:5px;height:5px;background:var(--green);border-radius:50%;flex-shrink:0;"></span>Conversion-optimised design</li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(248,250,252,.55);padding:4px 0;"><span style="width:5px;height:5px;background:var(--green);border-radius:50%;flex-shrink:0;"></span>Mobile-first, SEO-ready</li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(248,250,252,.55);padding:4px 0;"><span style="width:5px;height:5px;background:var(--green);border-radius:50%;flex-shrink:0;"></span>Google Analytics setup</li>
+        </ul>
+        <div class="service-price">₹25,000 <span style="font-size:14px;font-weight:400;color:var(--muted)">one-time</span></div>
+      </div>
+
+      <!-- Digital Marketing -->
+      <div class="card service-card orange-accent reveal reveal-delay-3">
+        <div class="service-icon" style="background:rgba(249,115,22,.1);">🎯</div>
+        <div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:700;margin-bottom:12px;">Full Digital Marketing</div>
+        <ul style="list-style:none;">
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(248,250,252,.55);padding:4px 0;"><span style="width:5px;height:5px;background:var(--orange);border-radius:50%;flex-shrink:0;"></span>Google Ads management</li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(248,250,252,.55);padding:4px 0;"><span style="width:5px;height:5px;background:var(--orange);border-radius:50%;flex-shrink:0;"></span>SEO + content strategy</li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(248,250,252,.55);padding:4px 0;"><span style="width:5px;height:5px;background:var(--orange);border-radius:50%;flex-shrink:0;"></span>Email automation flows</li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(248,250,252,.55);padding:4px 0;"><span style="width:5px;height:5px;background:var(--orange);border-radius:50%;flex-shrink:0;"></span>Analytics dashboards</li>
+        </ul>
+        <div class="service-price">₹20,000<span style="font-size:14px;font-weight:400;color:var(--muted)">/mo</span></div>
+      </div>
+
+      <!-- Social Media -->
+      <div class="card service-card purple-accent reveal reveal-delay-1">
+        <div class="service-icon" style="background:rgba(167,139,250,.1);">📱</div>
+        <div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:700;margin-bottom:12px;">Social Media Mastery</div>
+        <ul style="list-style:none;">
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(248,250,252,.55);padding:4px 0;"><span style="width:5px;height:5px;background:#A78BFA;border-radius:50%;flex-shrink:0;"></span>Instagram Reels + Stories</li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(248,250,252,.55);padding:4px 0;"><span style="width:5px;height:5px;background:#A78BFA;border-radius:50%;flex-shrink:0;"></span>LinkedIn lead generation</li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(248,250,252,.55);padding:4px 0;"><span style="width:5px;height:5px;background:#A78BFA;border-radius:50%;flex-shrink:0;"></span>Influencer partnerships</li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(248,250,252,.55);padding:4px 0;"><span style="width:5px;height:5px;background:#A78BFA;border-radius:50%;flex-shrink:0;"></span>30+ posts/month minimum</li>
+        </ul>
+        <div class="service-price">₹10,000<span style="font-size:14px;font-weight:400;color:var(--muted)">/mo</span></div>
+      </div>
+
+      <!-- Software -->
+      <div class="card service-card indigo-accent reveal reveal-delay-2">
+        <div class="service-icon" style="background:rgba(129,140,248,.1);">💻</div>
+        <div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:700;margin-bottom:12px;">Custom Software</div>
+        <ul style="list-style:none;">
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(248,250,252,.55);padding:4px 0;"><span style="width:5px;height:5px;background:#818CF8;border-radius:50%;flex-shrink:0;"></span>CRM integrations</li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(248,250,252,.55);padding:4px 0;"><span style="width:5px;height:5px;background:#818CF8;border-radius:50%;flex-shrink:0;"></span>WhatsApp automation</li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(248,250,252,.55);padding:4px 0;"><span style="width:5px;height:5px;background:#818CF8;border-radius:50%;flex-shrink:0;"></span>Internal dashboards</li>
+          <li style="display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(248,250,252,.55);padding:4px 0;"><span style="width:5px;height:5px;background:#818CF8;border-radius:50%;flex-shrink:0;"></span>SaaS product builds</li>
+        </ul>
+        <div class="service-price">from ₹50,000</div>
+      </div>
+
+      <!-- CTA card -->
+      <div class="reveal reveal-delay-3" style="background:linear-gradient(135deg,rgba(34,197,94,.12),rgba(22,163,74,.06));border:1px solid rgba(34,197,94,.25);border-radius:16px;padding:36px 32px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:16px;">
+        <div style="font-family:'Sora',sans-serif;font-size:22px;font-weight:800;line-height:1.2;">Ready to<br><span style="color:var(--green);">10x Your<br>Business?</span></div>
+        <p style="font-size:14px;color:rgba(248,250,252,.5);line-height:1.7;">Most clients start with Social Media + Website (₹35k/mo). Pick 2 services and grow.</p>
+        <a href="#contact" class="btn-primary" style="width:100%;justify-content:center;">Book Free Strategy Call</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     METRICS / PROOF BAR
+═══════════════════════════════════════════════════ -->
+<div style="background:var(--slate);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:64px 48px;">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-1" style="background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;">
+
+      <div class="reveal" style="background:var(--slate);padding:40px 32px;text-align:center;">
+        <div class="metric-num" data-target="17" data-suffix="+">0+</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:6px;letter-spacing:.5px;">Active Clients</div>
+      </div>
+      <div class="reveal reveal-delay-1" style="background:var(--slate);padding:40px 32px;text-align:center;">
+        <div class="metric-num" style="color:var(--orange);" data-target="10" data-prefix="₹" data-suffix="Cr+">₹0Cr+</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:6px;letter-spacing:.5px;">Revenue Generated</div>
+      </div>
+      <div class="reveal reveal-delay-2" style="background:var(--slate);padding:40px 32px;text-align:center;">
+        <div class="metric-num" style="color:#60A5FA;" data-target="8.2" data-suffix="x" data-decimal="1">0x</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:6px;letter-spacing:.5px;">Average ROAS</div>
+      </div>
+      <div class="reveal reveal-delay-3" style="background:var(--slate);padding:40px 32px;text-align:center;">
+        <div class="metric-num" style="color:#A78BFA;" data-target="45" data-suffix=" Days">0 Days</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:6px;letter-spacing:.5px;">Avg. To First Results</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     ABOUT SECTION
+═══════════════════════════════════════════════════ -->
+<section id="about" style="padding:100px 48px;background:var(--navy);">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+      <!-- LEFT: Nishant + values -->
+      <div>
+        <div class="sec-label reveal">About the Team</div>
+        <h2 class="sec-title reveal">Bengaluru Born.<br><span class="green">Results</span> <span class="outline">Obsessed.</span></h2>
+        <p class="reveal" style="font-size:16px;color:rgba(248,250,252,.5);line-height:1.8;margin-bottom:32px;">From startup CEO to your growth partner. MBA + IT expertise meets street-smart Bengaluru hustle.</p>
+
+        <!-- Founder card -->
+        <div class="card reveal" style="padding:32px;margin-bottom:20px;">
+          <div style="display:flex;align-items:flex-start;gap:16px;margin-bottom:20px;">
+            <div style="width:60px;height:60px;background:linear-gradient(135deg,#6366F1,#60A5FA);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">👨‍💼</div>
+            <div>
+              <div style="font-family:'Sora',sans-serif;font-size:20px;font-weight:700;">Nishant Sahay</div>
+              <div style="display:inline-block;background:rgba(34,197,94,.15);color:var(--green);font-size:11px;font-weight:600;padding:3px 10px;border-radius:4px;letter-spacing:1px;text-transform:uppercase;margin-top:4px;">Founder & CEO</div>
+            </div>
+          </div>
+          <p style="font-size:14px;color:rgba(248,250,252,.6);line-height:1.8;margin-bottom:16px;"><strong style="color:var(--white);">MBA Marketing + IT (BIT Mesra)</strong> → Sold millions at ICICI → Built tech sales at Vedantu → Now scaling Bengaluru MSMEs.</p>
+          <p style="font-size:14px;color:rgba(248,250,252,.5);line-height:1.7;font-style:italic;">"I treat your marketing like my own startup. Weekly 15-min calls. Fixed fees. Real results or you walk."</p>
+          <div style="display:flex;gap:10px;margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
+            <a href="mailto:nishant@numerounomarketing.com" class="social-btn">📧</a>
+            <a href="#" class="social-btn">💼</a>
+            <a href="https://wa.me/919876543210" class="social-btn" target="_blank">📱</a>
+          </div>
+        </div>
+
+        <!-- Career timeline -->
+        <div class="card reveal" style="padding:28px 32px;">
+          <div style="font-family:'Sora',sans-serif;font-size:13px;font-weight:600;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;">Career Journey</div>
+          <div style="display:flex;flex-direction:column;">
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="timeline-dot"></div>
+                <div class="timeline-line"></div>
+              </div>
+              <div style="padding-bottom:20px;">
+                <div style="font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:#60A5FA;">ICICI Bank</div>
+                <div style="font-size:13px;color:var(--muted);">Privilege Banking — Sold millions in premium products</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="timeline-dot"></div>
+                <div class="timeline-line"></div>
+              </div>
+              <div style="padding-bottom:20px;">
+                <div style="font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:var(--orange);">Vedantu</div>
+                <div style="font-size:13px;color:var(--muted);">Tech Sales — Scaled digital education growth</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="timeline-dot" style="background:var(--green);box-shadow:0 0 10px rgba(34,197,94,.5);"></div>
+              </div>
+              <div>
+                <div style="font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:var(--green);">Numero Uno Marketing</div>
+                <div style="font-size:13px;color:var(--muted);">Founded — Now scaling 17+ Bengaluru MSMEs</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: values + 4-week process -->
+      <div>
+        <!-- 4 value boxes -->
+        <div class="grid grid-cols-2 gap-4 mb-6 reveal">
+          <div class="card" style="padding:24px;text-align:center;">
+            <div style="font-size:28px;margin-bottom:10px;">🏢</div>
+            <div style="font-family:'Sora',sans-serif;font-size:15px;font-weight:700;margin-bottom:6px;">Bengaluru Local</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.6;">We know your market, competitors & customers</div>
+          </div>
+          <div class="card" style="padding:24px;text-align:center;">
+            <div style="font-size:28px;margin-bottom:10px;">💰</div>
+            <div style="font-family:'Sora',sans-serif;font-size:15px;font-weight:700;margin-bottom:6px;">Fixed Pricing</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.6;">No surprises. Cancel anytime.</div>
+          </div>
+          <div class="card" style="padding:24px;text-align:center;">
+            <div style="font-size:28px;margin-bottom:10px;">📊</div>
+            <div style="font-family:'Sora',sans-serif;font-size:15px;font-weight:700;margin-bottom:6px;">Weekly Updates</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.6;">15-min calls. Clear dashboards.</div>
+          </div>
+          <div class="card" style="padding:24px;text-align:center;">
+            <div style="font-size:28px;margin-bottom:10px;">🚀</div>
+            <div style="font-family:'Sora',sans-serif;font-size:15px;font-weight:700;margin-bottom:6px;">Startup DNA</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.6;">We've built companies. Now we build yours.</div>
+          </div>
+        </div>
+
+        <!-- 4-Week Process -->
+        <div class="card reveal" style="padding:32px;">
+          <div style="font-family:'Sora',sans-serif;font-size:17px;font-weight:700;margin-bottom:24px;text-align:center;color:var(--white);">Your Growth in <span style="color:var(--green);">4 Weeks</span></div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+
+            <div class="card" style="display:flex;align-items:flex-start;gap:14px;padding:16px 18px;background:rgba(99,102,241,.06);border-color:rgba(99,102,241,.2);">
+              <div style="width:36px;height:36px;background:linear-gradient(135deg,#6366F1,#60A5FA);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:14px;font-weight:800;color:white;flex-shrink:0;">1</div>
+              <div>
+                <div style="font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:#818CF8;margin-bottom:3px;">Week 1: Audit</div>
+                <div style="font-size:13px;color:var(--muted);line-height:1.6;">Deep competitor analysis. Identify quick wins. Custom 90-day roadmap.</div>
+              </div>
+            </div>
+
+            <div class="card" style="display:flex;align-items:flex-start;gap:14px;padding:16px 18px;background:rgba(34,197,94,.05);border-color:rgba(34,197,94,.15);">
+              <div style="width:36px;height:36px;background:linear-gradient(135deg,#22C55E,#16A34A);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:14px;font-weight:800;color:white;flex-shrink:0;">2</div>
+              <div>
+                <div style="font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:var(--green);margin-bottom:3px;">Week 2: Launch</div>
+                <div style="font-size:13px;color:var(--muted);line-height:1.6;">Content calendar live. Ads running. Website optimised. First leads flowing.</div>
+              </div>
+            </div>
+
+            <div class="card" style="display:flex;align-items:flex-start;gap:14px;padding:16px 18px;background:rgba(249,115,22,.05);border-color:rgba(249,115,22,.15);">
+              <div style="width:36px;height:36px;background:linear-gradient(135deg,#F97316,#EF4444);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:14px;font-weight:800;color:white;flex-shrink:0;">3–4</div>
+              <div>
+                <div style="font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:var(--orange);margin-bottom:3px;">Week 3–4: Scale</div>
+                <div style="font-size:13px;color:var(--muted);line-height:1.6;">Double down on winners. Predictable revenue pipeline established.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     TESTIMONIALS SECTION
+═══════════════════════════════════════════════════ -->
+<section id="testimonials" style="padding:100px 48px;background:var(--navy2);">
+  <div class="max-w-7xl mx-auto">
+
+    <!-- Header -->
+    <div class="text-center reveal" style="margin-bottom:64px;">
+      <div class="sec-label" style="justify-content:center;"><span style="width:28px;height:1px;background:var(--green);display:block;"></span>Client Love<span style="width:28px;height:1px;background:var(--green);display:block;"></span></div>
+      <h2 class="sec-title" style="margin-top:12px;">Don't Take Our Word.<br><span class="green">Take Theirs.</span></h2>
+      <p style="font-size:16px;color:rgba(248,250,252,.5);max-width:500px;margin:0 auto;line-height:1.8;">Bengaluru business owners who chose fixed-fee growth over expensive agencies.</p>
+    </div>
+
+    <!-- 3-column testimonials -->
+    <div class="grid md:grid-cols-3 gap-5 mb-12">
+
+      <!-- Restaurant -->
+      <div class="card test-card reveal reveal-delay-1">
+        <div class="big-quote">"</div>
+        <div class="test-metric">₹4.2L → ₹12.8L</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:16px;letter-spacing:.5px;">Monthly Revenue</div>
+        <p style="font-size:15px;line-height:1.8;color:rgba(248,250,252,.65);font-style:italic;margin-bottom:28px;">"Instagram was dead. Now we get 89 bookings/month. Nishant fixed it in 45 days."</p>
+        <div style="display:flex;justify-content:center;gap:24px;margin-bottom:24px;padding:16px;background:rgba(249,115,22,.06);border-radius:10px;border:1px solid rgba(249,115,22,.15);">
+          <div style="text-align:center;"><div style="font-family:'Sora',sans-serif;font-size:22px;font-weight:800;color:var(--green);">+204%</div><div style="font-size:11px;color:var(--muted);">Revenue</div></div>
+          <div style="width:1px;background:var(--border);"></div>
+          <div style="text-align:center;"><div style="font-family:'Sora',sans-serif;font-size:22px;font-weight:800;color:var(--orange);">89</div><div style="font-size:11px;color:var(--muted);">Bookings/mo</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:40px;height:40px;background:linear-gradient(135deg,#F97316,#EF4444);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;">🍽️</div>
+          <div>
+            <div style="font-family:'Sora',sans-serif;font-size:14px;font-weight:700;">Rajesh K.</div>
+            <div style="font-size:12px;color:var(--muted);">Restaurant Chain Owner</div>
+          </div>
+          <div style="margin-left:auto;font-size:14px;color:var(--amber);">⭐⭐⭐⭐⭐</div>
+        </div>
+      </div>
+
+      <!-- Dental -->
+      <div class="card test-card reveal reveal-delay-2">
+        <div class="big-quote">"</div>
+        <div class="test-metric" style="color:#60A5FA;">56 → 142 Patients</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:16px;letter-spacing:.5px;">Monthly Appointments</div>
+        <p style="font-size:15px;line-height:1.8;color:rgba(248,250,252,.65);font-style:italic;margin-bottom:28px;">"Google appointments tripled. Fixed price, no headaches. Best decision we made."</p>
+        <div style="display:flex;justify-content:center;gap:24px;margin-bottom:24px;padding:16px;background:rgba(96,165,250,.06);border-radius:10px;border:1px solid rgba(96,165,250,.15);">
+          <div style="text-align:center;"><div style="font-family:'Sora',sans-serif;font-size:22px;font-weight:800;color:var(--green);">+154%</div><div style="font-size:11px;color:var(--muted);">Patients</div></div>
+          <div style="width:1px;background:var(--border);"></div>
+          <div style="text-align:center;"><div style="font-family:'Sora',sans-serif;font-size:22px;font-weight:800;color:#60A5FA;">₹8.7L</div><div style="font-size:11px;color:var(--muted);">Revenue</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:40px;height:40px;background:linear-gradient(135deg,#60A5FA,#3B82F6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;">🦷</div>
+          <div>
+            <div style="font-family:'Sora',sans-serif;font-size:14px;font-weight:700;">Dr. Priya M.</div>
+            <div style="font-size:12px;color:var(--muted);">Dental Clinic, Koramangala</div>
+          </div>
+          <div style="margin-left:auto;font-size:14px;color:var(--amber);">⭐⭐⭐⭐⭐</div>
+        </div>
+      </div>
+
+      <!-- Ecommerce -->
+      <div class="card test-card reveal reveal-delay-3">
+        <div class="big-quote">"</div>
+        <div class="test-metric" style="color:#A78BFA;">₹8L → ₹23L Sales</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:16px;letter-spacing:.5px;">Monthly GMV</div>
+        <p style="font-size:15px;line-height:1.8;color:rgba(248,250,252,.65);font-style:italic;margin-bottom:28px;">"Fixed ₹25k/mo got us 3x sales. No other agency delivered this ROI."</p>
+        <div style="display:flex;justify-content:center;gap:24px;margin-bottom:24px;padding:16px;background:rgba(167,139,250,.06);border-radius:10px;border:1px solid rgba(167,139,250,.15);">
+          <div style="text-align:center;"><div style="font-family:'Sora',sans-serif;font-size:22px;font-weight:800;color:var(--green);">+187%</div><div style="font-size:11px;color:var(--muted);">Sales</div></div>
+          <div style="width:1px;background:var(--border);"></div>
+          <div style="text-align:center;"><div style="font-family:'Sora',sans-serif;font-size:22px;font-weight:800;color:#A78BFA;">420</div><div style="font-size:11px;color:var(--muted);">Orders</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:40px;height:40px;background:linear-gradient(135deg,#A78BFA,#EC4899);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;">🛍️</div>
+          <div>
+            <div style="font-family:'Sora',sans-serif;font-size:14px;font-weight:700;">Ankit S.</div>
+            <div style="font-size:12px;color:var(--muted);">Fashion Brand, Whitefield</div>
+          </div>
+          <div style="margin-left:auto;font-size:14px;color:var(--amber);">⭐⭐⭐⭐⭐</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Video testimonial teasers -->
+    <div class="grid md:grid-cols-3 gap-4 mb-12">
+      <div class="card reveal reveal-delay-1" style="padding:24px;display:flex;align-items:center;gap:16px;cursor:none;">
+        <div style="width:52px;height:52px;background:linear-gradient(135deg,#F97316,#EF4444);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">▶️</div>
+        <div>
+          <div style="font-family:'Sora',sans-serif;font-size:14px;font-weight:700;">Rajesh K.</div>
+          <div style="font-size:12px;color:var(--green);">⭐⭐⭐⭐⭐  "Best agency in Bengaluru"</div>
+        </div>
+      </div>
+      <div class="card reveal reveal-delay-2" style="padding:24px;display:flex;align-items:center;gap:16px;cursor:none;">
+        <div style="width:52px;height:52px;background:linear-gradient(135deg,#60A5FA,#3B82F6);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">▶️</div>
+        <div>
+          <div style="font-family:'Sora',sans-serif;font-size:14px;font-weight:700;">Dr. Priya M.</div>
+          <div style="font-size:12px;color:var(--green);">⭐⭐⭐⭐⭐  "Tripled our patients"</div>
+        </div>
+      </div>
+      <div class="card reveal reveal-delay-3" style="padding:24px;display:flex;align-items:center;gap:16px;cursor:none;">
+        <div style="width:52px;height:52px;background:linear-gradient(135deg,#A78BFA,#EC4899);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">▶️</div>
+        <div>
+          <div style="font-family:'Sora',sans-serif;font-size:14px;font-weight:700;">Ankit S.</div>
+          <div style="font-size:12px;color:var(--green);">⭐⭐⭐⭐⭐  "3x sales in 3 months"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Join CTA -->
+    <div class="reveal" style="text-align:center;padding:56px 40px;background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(22,163,74,.04));border:1px solid rgba(34,197,94,.2);border-radius:20px;">
+      <h3 style="font-family:'Sora',sans-serif;font-size:clamp(24px,3vw,40px);font-weight:800;margin-bottom:12px;">Join <span style="color:var(--green);">17+ Growing Businesses</span></h3>
+      <p style="font-size:16px;color:rgba(248,250,252,.5);margin-bottom:32px;">Fixed pricing. Proven results. Bengaluru businesses scaling with confidence.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;">
+        <a href="#contact" class="btn-primary" style="font-size:16px;padding:16px 36px;">Start Free Audit →</a>
+        <a href="#testimonials" class="btn-ghost" style="font-size:16px;padding:15px 32px;">Read All Reviews</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     CONTACT SECTION
+═══════════════════════════════════════════════════ -->
+<section id="contact" style="padding:100px 48px;background:var(--navy);">
+  <div class="max-w-5xl mx-auto">
+
+    <!-- Header -->
+    <div class="text-center reveal" style="margin-bottom:56px;">
+      <div class="sec-label" style="justify-content:center;"><span style="width:28px;height:1px;background:var(--green);display:block;"></span>Start Growing<span style="width:28px;height:1px;background:var(--green);display:block;"></span></div>
+      <h2 class="sec-title" style="margin-top:12px;">Simple Next Step:<br><span class="green">15-Minute Call</span></h2>
+      <p style="font-size:16px;color:rgba(248,250,252,.5);max-width:440px;margin:0 auto;line-height:1.8;">Talk growth strategy. See if our plans fit your business. No pressure, no commitment.</p>
+    </div>
+
+    <!-- Two-column contact -->
+    <div class="grid lg:grid-cols-2 gap-10 mb-12">
+
+      <!-- WhatsApp card -->
+      <div class="card reveal reveal-delay-1" style="padding:40px;display:flex;flex-direction:column;gap:20px;background:linear-gradient(135deg,rgba(34,197,94,.1),rgba(22,163,74,.05));border-color:rgba(34,197,94,.25);">
+        <div style="text-align:center;">
+          <div style="width:64px;height:64px;background:linear-gradient(135deg,#22C55E,#16A34A);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 16px;">📱</div>
+          <div style="font-family:'Sora',sans-serif;font-size:22px;font-weight:700;margin-bottom:8px;">WhatsApp Chat</div>
+          <p style="font-size:14px;color:rgba(248,250,252,.55);line-height:1.7;">Fastest option. Reply in 30 minutes during business hours. Get clear pricing instantly.</p>
+        </div>
+        <div style="display:flex;justify-content:center;gap:32px;padding:20px;background:rgba(34,197,94,.06);border-radius:12px;border:1px solid rgba(34,197,94,.12);">
+          <div style="text-align:center;"><div style="font-family:'Sora',sans-serif;font-size:20px;font-weight:700;color:var(--green);">📲 Live</div><div style="font-size:12px;color:var(--muted);">Direct Chat</div></div>
+          <div style="width:1px;background:var(--border);"></div>
+          <div style="text-align:center;"><div style="font-family:'Sora',sans-serif;font-size:20px;font-weight:700;color:var(--orange);">₹0</div><div style="font-size:12px;color:var(--muted);">No Cost</div></div>
+        </div>
+        <a href="https://wa.me/919876543210?text=Hi%20Nishant%2C%20I%20saw%20your%20website%20and%20want%20to%20discuss%20growth%20for%20my%20business!" target="_blank" class="wa-btn">
+          <span style="font-size:20px;">💬</span>
+          Start WhatsApp Conversation →
+        </a>
+        <div style="text-align:center;">
+          <p style="font-size:13px;color:var(--muted);">Or call directly: <a href="tel:+919876543210" style="color:var(--green);font-weight:600;text-decoration:none;">+91 98765 43210</a></p>
+        </div>
+      </div>
+
+      <!-- Schedule form -->
+      <div class="card reveal reveal-delay-2" style="padding:40px;">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px;">
+          <div style="width:48px;height:48px;background:linear-gradient(135deg,#60A5FA,#3B82F6);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;">📅</div>
+          <div>
+            <div style="font-family:'Sora',sans-serif;font-size:18px;font-weight:700;">Schedule a Call</div>
+            <div style="font-size:13px;color:var(--muted);">15 minutes. Same/next day slot.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:14px;" id="contactForm">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <div>
+              <label>Business Name</label>
+              <input type="text" placeholder="Your business" id="bizName"/>
+            </div>
+            <div>
+              <label>Phone / WhatsApp</label>
+              <input type="tel" placeholder="+91 XXXXX XXXXX" id="phone"/>
+            </div>
+          </div>
+          <div>
+            <label>Email (optional)</label>
+            <input type="email" placeholder="you@business.com" id="email"/>
+          </div>
+          <div>
+            <label>Quick question about</label>
+            <select id="topic">
+              <option value="">Select a topic</option>
+              <option>Social media growth</option>
+              <option>Website performance</option>
+              <option>Google / Meta Ads</option>
+              <option>Full Digital Marketing</option>
+              <option>Pricing & packages</option>
+              <option>Restaurant marketing</option>
+              <option>Dental / Clinic leads</option>
+              <option>E-commerce growth</option>
+            </select>
+          </div>
+          <div>
+            <label>Monthly marketing budget</label>
+            <select id="budget">
+              <option value="">Select range</option>
+              <option>Under ₹10,000</option>
+              <option>₹10,000 – ₹30,000</option>
+              <option>₹30,000 – ₹1,00,000</option>
+              <option>₹1,00,000+</option>
+              <option>Just exploring options</option>
+            </select>
+          </div>
+          <button onclick="submitForm()" class="btn-primary" style="width:100%;justify-content:center;font-size:15px;padding:15px;">
+            Send Details →
+            <span style="font-size:12px;font-weight:400;opacity:.7;display:block;margin-top:2px;">(Takes 60 seconds)</span>
+          </button>
+        </div>
+
+        <!-- Success state (hidden) -->
+        <div id="formSuccess" style="display:none;text-align:center;padding:32px 0;">
+          <div style="font-size:48px;margin-bottom:12px;">✅</div>
+          <div style="font-family:'Sora',sans-serif;font-size:20px;font-weight:700;color:var(--green);margin-bottom:8px;">Request Received!</div>
+          <p style="font-size:14px;color:var(--muted);">Nishant will reach out within 2 hours via WhatsApp.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust signals -->
+    <div class="grid grid-cols-3 gap-4 mb-12">
+      <div class="card reveal reveal-delay-1" style="padding:24px;text-align:center;">
+        <div style="font-size:28px;margin-bottom:8px;">📞</div>
+        <div style="font-family:'Sora',sans-serif;font-size:14px;font-weight:700;margin-bottom:4px;">Reply in 30 min</div>
+        <div style="font-size:12px;color:var(--muted);">WhatsApp business hours</div>
+      </div>
+      <div class="card reveal reveal-delay-2" style="padding:24px;text-align:center;">
+        <div style="font-size:28px;margin-bottom:8px;">💰</div>
+        <div style="font-family:'Sora',sans-serif;font-size:14px;font-weight:700;margin-bottom:4px;">Cancel monthly</div>
+        <div style="font-size:12px;color:var(--muted);">No long-term contracts</div>
+      </div>
+      <div class="card reveal reveal-delay-3" style="padding:24px;text-align:center;">
+        <div style="font-size:28px;margin-bottom:8px;">📈</div>
+        <div style="font-family:'Sora',sans-serif;font-size:14px;font-weight:700;margin-bottom:4px;">17 active clients</div>
+        <div style="font-size:12px;color:var(--muted);">All Bengaluru SMBs</div>
+      </div>
+    </div>
+
+    <!-- Final talk to Nishant -->
+    <div class="reveal" style="text-align:center;padding:48px 40px;background:linear-gradient(135deg,rgba(34,197,94,.07),rgba(16,163,74,.03));border:1px solid rgba(34,197,94,.18);border-radius:20px;">
+      <div style="font-size:40px;margin-bottom:12px;">🤝</div>
+      <h3 style="font-family:'Sora',sans-serif;font-size:clamp(22px,3vw,36px);font-weight:800;margin-bottom:12px;">No Risk Growth Partnership</h3>
+      <p style="font-size:15px;color:rgba(248,250,252,.5);max-width:560px;margin:0 auto 28px;line-height:1.8;">Talk to the founder directly. Clear pricing. Start small. Scale when you see results. That's how we built trust with 17+ clients.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center;">
+        <a href="https://wa.me/919876543210?text=Hi%20Nishant%2C%20I%20want%20to%20discuss%20growth%20for%20my%20business!" target="_blank" class="btn-primary" style="font-size:16px;padding:16px 36px;">Talk to Nishant →</a>
+        <div style="font-size:14px;color:var(--muted);">Or fill the form above • <span style="color:var(--green);">Response within 2 hours</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════ -->
+<footer style="padding:60px 48px 28px;">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="grid md:grid-cols-4 gap-10" style="margin-bottom:48px;">
+
+      <div style="grid-column:span 1;">
+        <a href="#" class="nav-logo" style="display:block;font-size:22px;margin-bottom:14px;">Numero<span>Uno</span></a>
+        <p style="font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:20px;">Empowering Bengaluru MSMEs with scalable digital marketing. Fixed pricing. Real results.</p>
+        <div style="display:flex;gap:8px;">
+          <a href="#" class="social-btn">in</a>
+          <a href="#" class="social-btn">ig</a>
+          <a href="#" class="social-btn">📘</a>
+          <a href="https://wa.me/919876543210" class="social-btn" target="_blank">💬</a>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-family:'Sora',sans-serif;font-size:12px;font-weight:600;color:rgba(248,250,252,.35);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;">Services</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="#services" class="foot-link">Performance Marketing</a>
+          <a href="#services" class="foot-link">Social Media</a>
+          <a href="#services" class="foot-link">Web Development</a>
+          <a href="#services" class="foot-link">AI Growth Tools</a>
+          <a href="#services" class="foot-link">Custom Software</a>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-family:'Sora',sans-serif;font-size:12px;font-weight:600;color:rgba(248,250,252,.35);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;">Company</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="#about" class="foot-link">About Nishant</a>
+          <a href="#testimonials" class="foot-link">Case Studies</a>
+          <a href="#contact" class="foot-link">Contact</a>
+          <a href="#" class="foot-link">Blog / Insights</a>
+          <a href="#" class="foot-link">Careers</a>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-family:'Sora',sans-serif;font-size:12px;font-weight:600;color:rgba(248,250,252,.35);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;">Contact</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="mailto:nishant@numerounomarketing.com" class="foot-link">📧 nishant@numerounomarketing.com</a>
+          <a href="tel:+919876543210" class="foot-link">📞 +91 98765 43210</a>
+          <a href="https://wa.me/919876543210" class="foot-link" target="_blank">💬 WhatsApp Us</a>
+          <span style="font-size:14px;color:var(--muted);">📍 Bengaluru, Karnataka</span>
+        </div>
+        <a href="#contact" class="btn-primary" style="margin-top:20px;font-size:13px;padding:12px 20px;width:100%;justify-content:center;">Get Free Audit →</a>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div style="padding-top:24px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;">
+      <span style="font-size:13px;color:var(--muted);">© 2025 Numero Uno Marketing Pvt. Ltd. All rights reserved.</span>
+      <div style="display:flex;gap:20px;">
+        <a href="#" class="foot-link" style="font-size:12px;">Privacy Policy</a>
+        <a href="#" class="foot-link" style="font-size:12px;">Terms of Service</a>
+        <span style="font-size:12px;color:var(--muted);">GST: 29XXXXX1234X1ZX</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  // ─── Cursor ───
+  const cur = document.getElementById('cur');
+  const curRing = document.getElementById('cur-ring');
+  let mx=0, my=0, rx=0, ry=0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cur.style.left = mx+'px'; cur.style.top = my+'px';
+  });
+  (function tick(){
+    rx += (mx-rx)*.11; ry += (my-ry)*.11;
+    curRing.style.left = rx+'px'; curRing.style.top = ry+'px';
+    requestAnimationFrame(tick);
+  })();
+
+  // ─── Nav scroll ───
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60));
+
+  // ─── Mobile menu ───
+  document.getElementById('menuOpen').onclick = () => document.getElementById('mobileMenu').classList.add('open');
+  document.getElementById('menuClose').onclick = closeMobile;
+  function closeMobile(){ document.getElementById('mobileMenu').classList.remove('open'); }
+
+  // ─── Scroll Reveal ───
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => revealObs.observe(el));
+
+  // ─── Counter animation ───
+  function animateNum(el) {
+    const target  = parseFloat(el.dataset.target);
+    const suffix  = el.dataset.suffix || '';
+    const prefix  = el.dataset.prefix || '';
+    const decimal = parseInt(el.dataset.decimal || '0');
+    const dur = 2000;
+    const t0 = performance.now();
+    function step(now){
+      const p = Math.min((now-t0)/dur, 1);
+      const ease = 1 - Math.pow(1-p, 3);
+      const val = target * ease;
+      el.textContent = prefix + (decimal > 0 ? val.toFixed(decimal) : Math.round(val)) + suffix;
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const numEls = document.querySelectorAll('[data-target]');
+  const numObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting && !e.target.dataset.done){
+        e.target.dataset.done = '1';
+        animateNum(e.target);
+      }
+    });
+  }, { threshold: .6 });
+  numEls.forEach(el => numObs.observe(el));
+
+  // ─── Form submit ───
+  function submitForm(){
+    const biz = document.getElementById('bizName').value.trim();
+    const ph  = document.getElementById('phone').value.trim();
+    if(!biz || !ph){ alert('Please fill in Business Name and Phone number.'); return; }
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+
+  // ─── Smooth scroll for nav links ───
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if(id === '#') return;
+      const el = document.querySelector(id);
+      if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); }
+    });
+  });
+</script>
+</body>
+</html>
