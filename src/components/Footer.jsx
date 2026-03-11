@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Mail, Phone, MapPin } from "lucide-react";
 
 const serviceLinks = [
@@ -29,9 +30,15 @@ export default function Footer() {
  <div>
  <Link
  href="/"
- className=" font-extrabold text-[22px] text-white no-underline block mb-4"
+ className="block mb-6"
  >
- Numero<span className="text-blue">Uno</span>
+ <Image 
+   src="/logo.png" 
+   alt="Numero Uno Marketing" 
+   width={220} 
+   height={55} 
+   className="h-14 w-auto object-contain"
+ />
  </Link>
  <p className="text-sm text-muted leading-relaxed mb-5">
  Performance marketing for brands built to scale.

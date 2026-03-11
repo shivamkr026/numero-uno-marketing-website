@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X, ArrowRight } from "lucide-react";
 
 const navLinks = [
@@ -46,9 +47,16 @@ export default function Nav() {
  >
  <Link
  href="/"
- className=" section-h2 text-xl text-white no-underline"
+ className="flex items-center"
  >
- Numero<span style={{ color: "#4F6EF7" }}>Uno</span>
+ <Image 
+   src="/logo.png" 
+   alt="Numero Uno Marketing" 
+   width={220} 
+   height={55} 
+   className="h-14 w-auto object-contain"
+   priority
+ />
  </Link>
 
  {/* Desktop links */}
