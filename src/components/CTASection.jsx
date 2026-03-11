@@ -5,8 +5,8 @@ export default function CTASection({
  headline = "Ready to Grow Your Business?",
  headlineAccent = "",
  subtitle = "Book a free 15-minute strategy call. No pressure, no commitment.",
- primaryText = "Get Free Marketing Audit",
- primaryHref = "/free-audit",
+ primaryText = "Learn More",
+ primaryHref = "/services",
  secondaryText = "",
  secondaryHref = "",
 }) {

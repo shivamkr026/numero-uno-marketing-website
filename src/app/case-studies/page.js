@@ -78,8 +78,8 @@ export default function CaseStudiesPage() {
  headline="Want Results"
  headlineAccent="Like These?"
  subtitle="Get a free marketing audit and see what we can achieve for your business."
- primaryText="Get Free Marketing Audit"
- primaryHref="/free-audit"
+ primaryText="Learn More"
+ primaryHref="/services"
  />
  </>
  );

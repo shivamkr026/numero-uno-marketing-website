@@ -21,7 +21,7 @@ const companyLinks = [
 
 export default function Footer() {
  return (
- <footer className="bg-[#080d15] border-t border-border">
+ <footer style={{ backgroundColor: "var(--color-base-deep)", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
  <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-16 pb-8">
  {/* Main grid */}
  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
@@ -73,7 +73,8 @@ export default function Footer() {
  <Link
  key={link.href}
  href={link.href}
- className="nav-link text-sm text-white/45 hover:text-white transition-colors no-underline"
+ className="nav-link text-sm transition-colors no-underline hover:text-white hover:font-medium"
+ style={{ color: "var(--color-muted)" }}
  >
  {link.label}
  </Link>
@@ -91,7 +92,8 @@ export default function Footer() {
  <Link
  key={link.href}
  href={link.href}
- className="nav-link text-sm text-white/45 hover:text-white transition-colors no-underline"
+ className="nav-link text-sm transition-colors no-underline hover:text-white hover:font-medium"
+ style={{ color: "var(--color-muted)" }}
  >
  {link.label}
  </Link>
@@ -107,14 +109,16 @@ export default function Footer() {
  <div className="flex flex-col gap-3">
  <a
  href="mailto:hello@numerounomarketing.com"
- className="flex items-center gap-2 nav-link text-sm text-white/45 hover:text-white transition-colors no-underline"
+ className="flex items-center gap-2 nav-link text-sm transition-colors no-underline hover:text-white hover:font-medium"
+ style={{ color: "var(--color-muted)" }}
  >
  <Mail size={14} />
  hello@numerounomarketing.com
  </a>
  <a
  href="tel:+919902633980"
- className="flex items-center gap-2 nav-link text-sm text-white/45 hover:text-white transition-colors no-underline"
+ className="flex items-center gap-2 nav-link text-sm transition-colors no-underline hover:text-white hover:font-medium"
+ style={{ color: "var(--color-muted)" }}
  >
  <Phone size={14} />
  +91 99026 33980
@@ -126,9 +130,10 @@ export default function Footer() {
  </div>
  <Link
  href="/free-audit"
- className="inline-flex items-center justify-center gap-2 w-full mt-5 bg-blue text-navy font-bold text-[13px] px-5 py-3 rounded-lg hover:bg-blue-dark transition-colors no-underline"
+ className="inline-flex items-center justify-center gap-2 w-full mt-5 font-bold text-[13px] px-5 py-3 rounded-lg transition-colors no-underline hover:brightness-110"
+ style={{ backgroundColor: "var(--color-primary)", color: "#FFFFFF" }}
  >
- Get Free Audit
+ Get Your Free Marketing Audit
  <ArrowRight size={14} />
  </Link>
 
@@ -162,13 +167,15 @@ export default function Footer() {
  <div className="flex gap-5">
  <Link
  href="/privacy-policy"
- className="nav-link text-xs text-white/45 hover:text-white transition-colors no-underline"
+ className="nav-link text-xs transition-colors no-underline hover:text-white"
+ style={{ color: "var(--color-muted)" }}
  >
  Privacy Policy
  </Link>
  <Link
  href="/terms"
- className="nav-link text-xs text-white/45 hover:text-white transition-colors no-underline"
+ className="nav-link text-xs transition-colors no-underline hover:text-white"
+ style={{ color: "var(--color-muted)" }}
  >
  Terms of Service
  </Link>

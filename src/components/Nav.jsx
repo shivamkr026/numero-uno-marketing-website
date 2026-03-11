@@ -48,7 +48,7 @@ export default function Nav() {
  href="/"
  className=" section-h2 text-xl text-white no-underline"
  >
- Numero<span className="text-blue">Uno</span>
+ Numero<span style={{ color: "#4F6EF7" }}>Uno</span>
  </Link>
 
  {/* Desktop links */}
@@ -59,19 +59,21 @@ export default function Nav() {
  href={link.href}
  className={`nav-link text-sm transition-colors no-underline relative ${
  isActive(link.href)
- ? "text-blue font-semibold"
- : "text-white/55 hover:text-blue"
+ ? "font-semibold py-1"
+ : "text-white/70 hover:text-white py-1"
  }`}
+ style={isActive(link.href) ? { color: "#4F6EF7" } : {}}
  >
  {link.label}
  {isActive(link.href) && (
- <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-blue" />
+ <span className="absolute -bottom-1 left-0 right-0 h-[2px]" style={{ backgroundColor: "#4F6EF7" }} />
  )}
  </Link>
  ))}
  <Link
  href="/free-audit"
- className="inline-flex items-center gap-2 bg-blue text-navy text-[13px] cta-btn px-5 py-2.5 rounded-lg hover:bg-blue-dark transition-colors cta-glow no-underline"
+ className="inline-flex items-center gap-2 text-white text-[13px] px-5 py-2.5 rounded-lg transition-transform hover:-translate-y-0.5 shadow-lg no-underline"
+ style={{ backgroundColor: "#4F6EF7", boxShadow: "0 4px 14px rgba(79, 110, 247, 0.25)" }}
  >
  Free Audit
  <ArrowRight size={14} />
@@ -106,11 +108,12 @@ export default function Nav() {
  href={link.href}
  onClick={() => setMobileOpen(false)}
  className={` text-2xl card-h3 no-underline transition-colors flex items-center gap-3 ${
- active ? "text-blue" : "text-white hover:text-blue"
+ active ? "text-white hover:text-white" : "text-white/70 hover:text-white"
  }`}
+ style={active ? { color: "#4F6EF7" } : {}}
  >
  {active && (
- <span className="w-2 h-2 bg-blue rounded-full shrink-0" />
+ <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: "#4F6EF7" }} />
  )}
  {link.label}
  </Link>
@@ -119,7 +122,8 @@ export default function Nav() {
  <Link
  href="/free-audit"
  onClick={() => setMobileOpen(false)}
- className=" text-2xl card-h3 text-blue no-underline"
+ className=" text-2xl card-h3 no-underline"
+ style={{ color: "#4F6EF7" }}
  >
  Get Free Audit
  </Link>

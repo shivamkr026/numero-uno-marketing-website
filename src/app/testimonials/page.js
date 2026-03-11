@@ -76,10 +76,10 @@ export default function TestimonialsPage() {
  headline="Ready to Write Your"
  headlineAccent="Growth Story?"
  subtitle="Book a free audit call today and see how we can replicate these results for your business."
- primaryText="Get Free Marketing Audit"
- primaryHref="/free-audit"
- secondaryText="View Case Studies"
- secondaryHref="/case-studies"
+ primaryText="Explore Case Studies"
+ primaryHref="/case-studies"
+ secondaryText="Learn More"
+ secondaryHref="/services"
  />
  </>
  );

@@ -69,10 +69,10 @@ export default function ServicesPage() {
  Not sure which service is right for your business?
  </p>
  <Link
- href="/free-audit"
+ href="/about"
  className="inline-flex items-center gap-2 bg-blue text-navy text-sm cta-btn px-7 py-3 rounded-lg hover:bg-blue-dark transition-colors no-underline"
  >
- Book Free Strategy Call
+ See How It Works
  <ArrowRight size={14} />
  </Link>
  </div>
@@ -83,8 +83,8 @@ export default function ServicesPage() {
  headline="Not Sure Which Service"
  headlineAccent="You Need?"
  subtitle="Book a free audit call and we'll recommend the right mix for your business and budget."
- primaryText="Get Free Marketing Audit"
- primaryHref="/free-audit"
+ primaryText="Learn More"
+ primaryHref="/contact"
  secondaryText="View Case Studies"
  secondaryHref="/case-studies"
  />

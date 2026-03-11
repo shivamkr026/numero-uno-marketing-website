@@ -30,6 +30,7 @@ import SectionHeader from "@/components/SectionHeader";
 import CTASection from "@/components/CTASection";
 import ContactForm from "@/components/ContactForm";
 import HeroStats from "@/components/HeroStats";
+import ParticleHero from "@/components/ParticleHero";
 
 const iconMap = {
  Target,
@@ -98,81 +99,23 @@ export default function HomePage() {
  return (
  <>
         {/* ═══════════════════════════════════════════════════
-          HERO SECTION
+          HEADER / HERO SECTION
         ═══════════════════════════════════════════════════ */}
-        <section 
-          className="relative flex flex-col items-center justify-center px-6 lg:px-12 transition-all w-full"
-          style={{
-            paddingTop: "100px",
-            paddingBottom: "60px",
-            minHeight: "100vh",
-            background: `
-              radial-gradient(ellipse 60% 50% at 50% 40%, rgba(59,130,246,0.1) 0%, transparent 65%),
-              radial-gradient(ellipse 40% 30% at 50% 60%, rgba(99,102,241,0.06) 0%, transparent 55%),
-              #080B12
-            `
-          }}
-        >
-          {/* Noise Overlay */}
-          <div 
-            className="absolute inset-0 pointer-events-none opacity-40 mix-blend-overlay"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E")`
-            }} 
-          />
-          
-          <div className="w-full relative z-10 flex flex-col items-center text-center mx-auto" style={{ maxWidth: "780px" }}>
-            
-            <div className="inline-flex items-center gap-2 bg-blue/10 border border-blue/30 rounded-full px-4 py-1.5 text-[13px] text-blue small-label mx-auto" style={{ marginBottom: "16px" }}>
-              <span className="w-1.5 h-1.5 bg-blue rounded-full animate-pulse" />
-              Revenue-Focused Growth Agency
-            </div>
-
-            <h1 className="hero-h1 text-[clamp(36px,5vw,64px)] font-bold mx-auto w-full" style={{ letterSpacing: "-0.03em", lineHeight: 1.05, maxWidth: "760px", marginBottom: "16px" }}>
-              Turn Marketing Into{" "}
-              <span className="text-blue">Predictable Revenue</span>
-            </h1>
-
-            <p className="body-para mx-auto text-[15px]" style={{ color: "rgba(255,255,255,0.5)", maxWidth: "480px", lineHeight: 1.65, marginBottom: "0" }}>
-              Websites, Performance Ads, Social Media and AI tools built for
-              one outcome — measurable growth that compounds.{" "}
-              <span className="text-blue font-semibold">
-                Fixed pricing. No lock-in. Built to scale.
-              </span>
-            </p>
-
-            <div className="flex justify-center flex-wrap w-full md:w-auto mx-auto" style={{ gap: "14px", marginTop: "28px", marginBottom: "32px" }}>
-              <Link
-                href="/free-audit"
-                className="inline-flex items-center justify-center gap-2 bg-blue text-navy text-[15px] cta-btn px-8 py-4 rounded-xl cta-glow no-underline w-full md:w-auto"
-              >
-                Get Free Marketing Audit
-                <ArrowRight size={16} />
-              </Link>
-              <Link
-                href="/services"
-                className="inline-flex items-center justify-center gap-2 border-[1.5px] border-border text-white text-[15px] cta-btn px-8 py-4 rounded-xl hover:border-blue/40 hover:bg-blue/5 transition-all no-underline w-full md:w-auto"
-              >
-                View Services
-              </Link>
-            </div>
-
-            <HeroStats />
-          </div>
-
-
-
-        </section>
+        <ParticleHero />
 
  {/* ═══════════════════════════════════════════════════
  SERVICES OVERVIEW
  ═══════════════════════════════════════════════════ */}
  <section 
- className="py-24 px-6 lg:px-12 bg-navy-2" 
+ className="py-24 px-6 lg:px-12 relative" 
  id="services"
- style={{ borderTop: "1px solid rgba(59,130,246,0.06)" }}
+ style={{ backgroundColor: "#0D0F14", borderTop: "1px solid rgba(255,255,255,0.06)" }}
  >
- <div className="max-w-7xl mx-auto">
+ <div 
+   className="absolute inset-0 pointer-events-none z-0" 
+   style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px)", backgroundSize: "22px 22px" }} 
+ />
+ <div className="max-w-7xl mx-auto relative z-10">
  <SectionHeader
  label="Our Services"
  title="Growth Services That Actually"
@@ -188,6 +131,7 @@ export default function HomePage() {
  key={service.slug}
  href={`/services/${service.slug}`}
  className="group sitewide-card p-8 no-underline flex flex-col"
+ style={{ background: "rgba(255,255,255,0.05)", borderColor: "rgba(255,255,255,0.07)" }}
  >
  <div
  className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
@@ -218,10 +162,11 @@ export default function HomePage() {
  Not sure which service is right for your business?
  </p>
  <Link
- href="/free-audit"
- className="inline-flex items-center gap-2 bg-blue text-navy text-sm cta-btn px-7 py-3 rounded-lg cta-glow no-underline"
+ href="/services"
+ className="inline-flex items-center gap-2 text-white text-sm cta-btn px-7 py-3 rounded-lg cta-glow no-underline font-semibold"
+ style={{ backgroundColor: "var(--color-primary)" }}
  >
- Book Free Strategy Call
+ Learn More
  <ArrowRight size={14} />
  </Link>
  </div>
@@ -232,8 +177,8 @@ export default function HomePage() {
  PROBLEM-SOLUTION
  ═══════════════════════════════════════════════════ */}
  <section 
- className="py-24 px-6 lg:px-12 bg-navy"
- style={{ borderTop: "1px solid rgba(59,130,246,0.06)" }}
+ className="py-24 px-6 lg:px-12"
+ style={{ backgroundColor: "#0D0F14", borderTop: "1px solid rgba(255,255,255,0.06)" }}
  >
  <div className="max-w-7xl mx-auto">
  <SectionHeader
@@ -244,20 +189,18 @@ export default function HomePage() {
  center
  />
 
- <div className="grid lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
+ <div className="flex flex-col lg:flex-row max-w-5xl mx-auto overflow-hidden">
  {/* Problems */}
- <div className="bg-red-500/5 border border-red-500/15 rounded-2xl p-8">
- <h3 className=" text-lg card-h3 text-red-400 mb-6 flex items-center gap-2">
- <span className="w-8 h-8 bg-red-500/15 rounded-lg flex items-center justify-center text-sm">✗</span>
+ <div className="flex-1 p-8 lg:p-12 relative" style={{ backgroundColor: "#0A0C11", borderRight: "1px solid rgba(79, 110, 247, 0.3)" }}>
+ <div className="absolute top-0 left-0 w-full h-full pointer-events-none" style={{ background: "radial-gradient(circle at top left, rgba(79, 110, 247, 0.06) 0%, transparent 60%)" }} />
+ <h3 className="text-lg card-h3 mb-6 flex items-center gap-3 relative z-10" style={{ color: "#FFFFFF" }}>
+ <span className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold" style={{ backgroundColor: "rgba(255,255,255,0.05)", color: "#BEBEBE" }}>✗</span>
  Common Growth Struggles
  </h3>
- <ul className="space-y-4">
+ <ul className="space-y-5 relative z-10">
  {problems.map((p, i) => (
- <li
- key={i}
- className="flex items-start gap-3 text-sm text-white/60 body-para"
- >
- <span className="w-1.5 h-1.5 bg-red-400 rounded-full mt-2 shrink-0" />
+ <li key={i} className="flex items-start gap-3 text-sm" style={{ color: "var(--color-secondary)" }}>
+ <span className="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style={{ backgroundColor: "#BEBEBE" }} />
  {p}
  </li>
  ))}
@@ -265,23 +208,17 @@ export default function HomePage() {
  </div>
 
  {/* Solutions */}
- <div className="bg-blue/5 border border-blue/15 rounded-2xl p-8">
- <h3 className=" text-lg card-h3 text-blue mb-6 flex items-center gap-2">
- <span className="w-8 h-8 bg-blue/15 rounded-lg flex items-center justify-center text-sm">
- <CheckCircle2 size={16} className="text-blue" />
+ <div className="flex-1 p-8 lg:p-12" style={{ backgroundColor: "#0D0F14" }}>
+ <h3 className="text-lg card-h3 mb-6 flex items-center gap-3" style={{ color: "var(--color-primary)" }}>
+ <span className="w-8 h-8 rounded-lg flex items-center justify-center text-sm" style={{ backgroundColor: "rgba(79, 110, 247, 0.15)", color: "var(--color-primary)" }}>
+ <CheckCircle2 size={16} />
  </span>
  Numero Uno Solutions
  </h3>
- <ul className="space-y-4">
+ <ul className="space-y-5">
  {solutions.map((s, i) => (
- <li
- key={i}
- className="flex items-start gap-3 text-sm text-white/60 body-para"
- >
- <CheckCircle2
- size={16}
- className="text-blue mt-0.5 shrink-0"
- />
+ <li key={i} className="flex items-start gap-3 text-sm" style={{ color: "var(--color-secondary)" }}>
+ <CheckCircle2 size={16} className="mt-0.5 shrink-0" style={{ color: "var(--color-primary)" }} />
  {s}
  </li>
  ))}
@@ -295,8 +232,8 @@ export default function HomePage() {
  PROCESS
  ═══════════════════════════════════════════════════ */}
  <section 
- className="py-24 px-6 lg:px-12 bg-navy-2"
- style={{ borderTop: "1px solid rgba(59,130,246,0.06)" }}
+ className="py-24 px-6 lg:px-12"
+ style={{ backgroundColor: "#0D0F14", borderTop: "1px solid rgba(255,255,255,0.06)" }}
  >
  <div className="max-w-7xl mx-auto">
  <SectionHeader
@@ -307,26 +244,32 @@ export default function HomePage() {
  center
  />
 
- <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+ {/* Desktop dashed line wrapper */}
+ <div className="relative max-w-5xl mx-auto mt-16">
+ <div className="hidden lg:block absolute top-[40px] left-0 w-full h-[1px] -z-10" style={{ borderTop: "1px dashed rgba(79, 110, 247, 0.3)" }}></div>
+ <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
  {processSteps.map((step) => (
  <div
  key={step.num}
- className="sitewide-card text-center group"
+ className="text-center group relative sitewide-card p-6 border-transparent bg-transparent mt-4"
+ style={{ background: "transparent", borderColor: "transparent" }}
  >
- <div className=" text-6xl metric-num text-white/[0.04] leading-none mb-4">
- {step.num}
+ <div 
+   className="w-20 h-20 rounded-full mx-auto relative flex items-center justify-center mb-6 z-10 transition-colors group-hover:bg-[#4F6EF725]"
+   style={{ backgroundColor: "rgba(79, 110, 247, 0.08)", border: "1px solid rgba(79, 110, 247, 0.4)" }}
+ >
+   <div className="absolute inset-0 rounded-full pointer-events-none transition-opacity" style={{ background: "radial-gradient(circle, rgba(79, 110, 247, 0.05) 0%, transparent 80%)", transform: "scale(2.5)", zIndex: -1 }}></div>
+   <span className="text-2xl font-bold" style={{ color: "var(--color-primary)" }}>{step.num}</span>
  </div>
- <div className="w-12 h-12 bg-blue/10 rounded-xl flex items-center justify-center mx-auto mb-4">
- <step.icon size={22} className="text-blue" />
- </div>
- <h3 className=" text-base card-h3 mb-2">
+ <h3 className="text-base font-bold mb-3" style={{ color: "#FFFFFF" }}>
  {step.title}
  </h3>
- <p className="text-[13px] text-white/50 body-para leading-relaxed">
+ <p className="text-[13px] leading-relaxed" style={{ color: "var(--color-secondary)" }}>
  {step.desc}
  </p>
  </div>
  ))}
+ </div>
  </div>
  </div>
  </section>
@@ -335,10 +278,14 @@ export default function HomePage() {
  CASE STUDIES
  ═══════════════════════════════════════════════════ */}
  <section 
- className="py-24 px-6 lg:px-12 bg-navy"
- style={{ borderTop: "1px solid rgba(59,130,246,0.06)" }}
+ className="py-24 px-6 lg:px-12 relative"
+ style={{ backgroundColor: "#0A0C11", borderTop: "1px solid rgba(255,255,255,0.06)" }}
  >
- <div className="max-w-7xl mx-auto">
+ <div 
+   className="absolute inset-0 pointer-events-none z-0" 
+   style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px)", backgroundSize: "24px 24px" }} 
+ />
+ <div className="max-w-7xl mx-auto relative z-10">
  <SectionHeader
  label="Results"
  title="Real Results for"
@@ -348,33 +295,46 @@ export default function HomePage() {
  />
 
  <div className="grid md:grid-cols-3 gap-6 mb-8">
- <Link href="/case-studies" className="group sitewide-card p-8 no-underline text-center">
- <div className="text-xs text-muted uppercase tracking-widest mb-4">Restaurant Chain</div>
- <div className=" text-[clamp(36px,4vw,52px)] metric-num text-orange">+204%</div>
- <div className="text-sm text-white/70 small-label mb-2">Revenue Growth</div>
- <div className="text-[13px] text-muted">₹4.2L → ₹12.8L monthly</div>
- <div className="mt-4 text-sm text-blue font-semibold opacity-0 group-hover:opacity-100 transition-opacity">Read Case Study →</div>
+ <Link 
+   href="/case-studies" 
+   className="group sitewide-card p-8 no-underline text-center relative overflow-hidden transition-shadow"
+   style={{ backgroundColor: "#13161F", borderTop: "3px solid var(--color-primary)" }}
+ >
+ <div className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--color-muted)" }}>Restaurant Chain</div>
+ <div className="text-[clamp(36px,4vw,52px)] font-bold mb-2" style={{ color: "var(--color-primary)" }}>+204%</div>
+ <div className="text-sm border-b border-white/5 pb-3 mb-3" style={{ color: "var(--color-secondary)" }}>Revenue Growth</div>
+ <div className="text-[13px]" style={{ color: "var(--color-muted)" }}>₹4.2L → ₹12.8L monthly</div>
+ <div className="mt-4 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: "var(--color-primary)" }}>Read Case Study →</div>
  </Link>
- <Link href="/case-studies" className="group sitewide-card p-8 no-underline text-center">
- <div className="text-xs text-muted uppercase tracking-widest mb-4">Dental Clinic</div>
- <div className=" text-[clamp(36px,4vw,52px)] metric-num text-blue">+154%</div>
- <div className="text-sm text-white/70 small-label mb-2">Patient Growth</div>
- <div className="text-[13px] text-muted">56 → 142 monthly appointments</div>
- <div className="mt-4 text-sm text-blue font-semibold opacity-0 group-hover:opacity-100 transition-opacity">Read Case Study →</div>
+ <Link 
+   href="/case-studies" 
+   className="group sitewide-card p-8 no-underline text-center relative overflow-hidden transition-shadow"
+   style={{ backgroundColor: "#13161F", borderTop: "3px solid var(--color-primary)" }}
+ >
+ <div className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--color-muted)" }}>Dental Clinic</div>
+ <div className="text-[clamp(36px,4vw,52px)] font-bold mb-2" style={{ color: "var(--color-primary)" }}>+154%</div>
+ <div className="text-sm border-b border-white/5 pb-3 mb-3" style={{ color: "var(--color-secondary)" }}>Patient Growth</div>
+ <div className="text-[13px]" style={{ color: "var(--color-muted)" }}>56 → 142 monthly appointments</div>
+ <div className="mt-4 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: "var(--color-primary)" }}>Read Case Study →</div>
  </Link>
- <Link href="/case-studies" className="group sitewide-card p-8 no-underline text-center">
- <div className="text-xs text-muted uppercase tracking-widest mb-4">Fashion E-Commerce</div>
- <div className=" text-[clamp(36px,4vw,52px)] metric-num text-purple">+187%</div>
- <div className="text-sm text-white/70 small-label mb-2">Sales Growth</div>
- <div className="text-[13px] text-muted">₹8L → ₹23L monthly GMV</div>
- <div className="mt-4 text-sm text-blue font-semibold opacity-0 group-hover:opacity-100 transition-opacity">Read Case Study →</div>
+ <Link 
+   href="/case-studies" 
+   className="group sitewide-card p-8 no-underline text-center relative overflow-hidden transition-shadow"
+   style={{ backgroundColor: "#13161F", borderTop: "3px solid var(--color-primary)" }}
+ >
+ <div className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--color-muted)" }}>Fashion E-Commerce</div>
+ <div className="text-[clamp(36px,4vw,52px)] font-bold mb-2" style={{ color: "var(--color-primary)" }}>+187%</div>
+ <div className="text-sm border-b border-white/5 pb-3 mb-3" style={{ color: "var(--color-secondary)" }}>Sales Growth</div>
+ <div className="text-[13px]" style={{ color: "var(--color-muted)" }}>₹8L → ₹23L monthly GMV</div>
+ <div className="mt-4 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: "var(--color-primary)" }}>Read Case Study →</div>
  </Link>
  </div>
 
  <div className="text-center">
  <Link
  href="/case-studies"
- className="inline-flex items-center gap-2 text-blue text-sm cta-btn hover:underline no-underline"
+ className="inline-flex items-center gap-2 cta-btn hover:underline no-underline"
+ style={{ color: "var(--color-primary)", fontSize: "14px", fontWeight: "600" }}
  >
  View All Case Studies
  <ArrowRight size={14} />
@@ -396,8 +356,8 @@ export default function HomePage() {
  headline="Join Our"
  headlineAccent="Growing Client Roster"
  subtitle="Fixed pricing. Proven results. Ambitious brands scaling with confidence."
- primaryText="Book Free Strategy Call"
- primaryHref="/free-audit"
+ primaryText="See How It Works"
+ primaryHref="/services"
  secondaryText="Read Client Reviews"
  secondaryHref="/case-studies"
  />
