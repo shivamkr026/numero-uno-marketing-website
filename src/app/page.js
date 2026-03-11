@@ -24,10 +24,12 @@ import {
  Mail,
 } from "lucide-react";
 import { services } from "@/data/services";
+import { caseStudies } from "@/data/caseStudies";
 import { testimonials } from "@/data/testimonials";
 import SectionHeader from "@/components/SectionHeader";
 import CTASection from "@/components/CTASection";
 import ContactForm from "@/components/ContactForm";
+import HeroStats from "@/components/HeroStats";
 
 const iconMap = {
  Target,
@@ -42,10 +44,9 @@ const iconMap = {
 };
 
 const metrics = [
- { value: "17+", label: "Active Clients", color: "text-white" },
+ { value: "17+", label: "Brands Scaled", color: "text-white" },
  { value: "₹10Cr+", label: "Revenue Generated", color: "text-orange" },
  { value: "8.2x", label: "Average ROAS", color: "text-blue" },
- { value: "100%", label: "Campaigns Optimized for Growth", color: "text-purple" },
 ];
 
 const problems = [
@@ -156,124 +157,10 @@ export default function HomePage() {
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 md:flex md:flex-row items-center justify-center w-full mx-auto relative gap-y-8 md:gap-y-0 text-center">
-              {[ 
-                { value: "17+", label: "Brands Scaled" }, 
-                { value: "8.2x", label: "Average ROAS" }, 
-                { value: "₹10Cr+", label: "Revenue Generated" }, 
-                { value: "4.9/5", label: "Client Rating" } 
-              ].map((m, i) => (
-                <div key={i} className={`flex flex-col items-center flex-1 px-4 md:px-6 ${i !== 3 ? 'md:border-r md:border-white/10' : ''}`}>
-                  <div style={{ fontFamily: "var(--font-heading), system-ui, sans-serif", fontSize: "32px", fontWeight: "700", color: "#3B82F6", lineHeight: 1 }}>
-                    {m.value}
-                  </div>
-                  <div style={{ fontFamily: "var(--font-body), system-ui, sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.08em", marginTop: "8px" }}>
-                    {m.label}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <HeroStats />
           </div>
 
-          {/* 
-          <div className="hidden lg:block mt-8 w-full max-w-4xl mx-auto">
-            <div 
-              className="p-8"
-              style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.08)",
-                boxShadow: "0 0 0 1px rgba(59,130,246,0.08), 0 24px 64px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.3)",
-                borderRadius: "16px"
-              }}
-            >
-              <div className="flex items-center justify-between mb-6">
-                <div>
-                  <div className="text-sm text-muted mb-1 text-left">
-                    This Month
-                  </div>
-                  <div className="text-2xl font-extrabold text-left">
-                    Client Results
-                  </div>
-                </div>
-                <div className="bg-blue/15 border border-blue/30 rounded-lg px-3 py-1.5 text-xs text-blue font-semibold">
-                  ↑ Live
-                </div>
-              </div>
 
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
-                <div className="rounded-xl p-4 text-left" style={{ background: "rgba(59,130,246,0.08)", border: "1px solid rgba(59,130,246,0.22)" }}>
-                  <div className="text-[11px] text-[#64748B] uppercase small-label mb-1">
-                    Avg. ROAS
-                  </div>
-                  <div className="text-3xl section-h2 text-[#60A5FA]">
-                    8.2x
-                  </div>
-                  <div className="text-[11px] mt-1" style={{ color: "rgba(96,165,250,0.8)" }}>
-                    ↑ +34% vs last mo
-                  </div>
-                </div>
-                <div className="rounded-xl p-4 text-left" style={{ background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.22)" }}>
-                  <div className="text-[11px] text-[#64748B] uppercase small-label mb-1">
-                    Leads Generated
-                  </div>
-                  <div className="text-3xl section-h2 text-[#818CF8]">
-                    1,240
-                  </div>
-                  <div className="text-[11px] mt-1" style={{ color: "rgba(129,140,248,0.8)" }}>
-                    ↑ +61% vs last mo
-                  </div>
-                </div>
-                <div className="rounded-xl p-4 text-left" style={{ background: "rgba(139,92,246,0.08)", border: "1px solid rgba(139,92,246,0.22)" }}>
-                  <div className="text-[11px] text-[#64748B] uppercase small-label mb-1">
-                    Revenue Added
-                  </div>
-                  <div className="text-[28px] metric-num text-[#A78BFA]">
-                    ₹48L
-                  </div>
-                  <div className="text-[11px] mt-1" style={{ color: "rgba(167,139,250,0.8)" }}>
-                    across 17 clients
-                  </div>
-                </div>
-                <div className="rounded-xl p-4 text-left" style={{ background: "rgba(59,130,246,0.06)", border: "1px solid rgba(59,130,246,0.18)" }}>
-                  <div className="text-[11px] text-[#64748B] uppercase small-label mb-1">
-                    Cost Per Lead
-                  </div>
-                  <div className="text-[28px] metric-num text-[#93C5FD]">
-                    ₹148
-                  </div>
-                  <div className="text-[11px] mt-1" style={{ color: "rgba(147,197,253,0.8)" }}>
-                    ↓ -63% optimised
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <div className="text-[11px] text-muted uppercase small-label mb-2 text-left">
-                  Weekly Leads Trend
-                </div>
-                <div className="flex items-end gap-1.5 h-[52px]">
-                  {[40, 55, 70, 62, 85, 100].map((h, i, arr) => {
-                    const isLast = i === arr.length - 1;
-                    return (
-                      <div
-                        key={i}
-                        style={{
-                          height: `${h}%`,
-                          background: isLast 
-                            ? "linear-gradient(to top, #2563EB, #60A5FA)" 
-                            : "linear-gradient(to top, #1D4ED8, #3B82F6)",
-                          borderRadius: "4px 4px 0 0",
-                          boxShadow: isLast ? "0 0 12px rgba(59,130,246,0.5)" : "none",
-                          flex: 1
-                        }}
-                      />
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-          */}
 
         </section>
 
@@ -506,8 +393,8 @@ export default function HomePage() {
  FINAL CTA
  ═══════════════════════════════════════════════════ */}
  <CTASection
- headline="Join"
- headlineAccent="17+ Brands Already Scaling"
+ headline="Join Our"
+ headlineAccent="Growing Client Roster"
  subtitle="Fixed pricing. Proven results. Ambitious brands scaling with confidence."
  primaryText="Book Free Strategy Call"
  primaryHref="/free-audit"

@@ -1,6 +1,7 @@
 import { Users, Award, Target, TrendingUp, MapPin, DollarSign, BarChart3, Rocket } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
 import CTASection from "@/components/CTASection";
+import AboutStats from "@/components/AboutStats";
 
 export const metadata = {
  title: "About Numero Uno Marketing — Our Story & Mission",
@@ -109,16 +110,7 @@ export default function AboutPage() {
  </div>
  </div>
 
- <div className="grid grid-cols-2 gap-4">
- <div className="sitewide-card p-6 text-center">
- <div className=" text-3xl section-h2 text-blue">17+</div>
- <div className="text-xs text-muted mt-1">Active Clients</div>
- </div>
- <div className="sitewide-card p-6 text-center">
- <div className=" text-3xl section-h2 text-orange">₹10Cr+</div>
- <div className="text-xs text-muted mt-1">Revenue Generated</div>
- </div>
- </div>
+ <AboutStats />
  </div>
  </div>
  </div>

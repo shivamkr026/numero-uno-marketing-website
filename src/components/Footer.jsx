@@ -35,7 +35,7 @@ export default function Footer() {
  </Link>
  <p className="text-sm text-muted leading-relaxed mb-5">
  Performance marketing for brands built to scale.
- Fixed pricing. Measurable results. No excuses.
+ Fixed pricing. Real results.
  </p>
  <div className="flex gap-3">
  <a
