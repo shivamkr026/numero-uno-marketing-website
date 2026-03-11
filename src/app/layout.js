@@ -19,15 +19,15 @@ const dmSans = DM_Sans({
 });
 
 export const metadata = {
-  title: "Numero Uno Marketing — Digital Marketing Agency Bangalore",
+  title: "Numero Uno Marketing — Performance Marketing Agency | Websites, Ads, AI & Social Media",
   description:
-    "Empowering Bangalore MSMEs with scalable, data-driven digital marketing solutions. Performance marketing, social media, web development, AI tools & more. Fixed pricing. Real results.",
+    "Numero Uno Marketing — a performance-first digital marketing agency. We build websites, run profitable ad campaigns, manage social media, and deploy AI tools that generate measurable revenue. Fixed pricing. No lock-in.",
   keywords:
-    "digital marketing agency bangalore, performance marketing bangalore, social media agency bangalore, website development bangalore, MSME marketing india",
+    "performance marketing agency, digital marketing, social media agency, website development, AI growth tools, scaling brands",
   openGraph: {
-    title: "Numero Uno Marketing — Digital Marketing Agency Bangalore",
+    title: "Numero Uno Marketing — Performance Marketing Agency | Websites, Ads, AI & Social Media",
     description:
-      "Agency-quality digital marketing at MSME-friendly budgets. 17+ active clients, ₹10Cr+ revenue generated, 8.2x average ROAS.",
+      "Numero Uno Marketing — a performance-first digital marketing agency. We build websites, run profitable ad campaigns, manage social media, and deploy AI tools that generate measurable revenue. Fixed pricing. No lock-in.",
     type: "website",
     locale: "en_IN",
     siteName: "Numero Uno Marketing",
