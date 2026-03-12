@@ -60,7 +60,7 @@ export default function Footer() {
  href="https://wa.me/919902633980"
  target="_blank"
  rel="noopener noreferrer"
- className="w-9 h-9 border border-border rounded-lg flex items-center justify-center text-sm text-muted hover:border-whatsapp hover:text-whatsapp transition-colors no-underline"
+ className="w-9 h-9 border border-border rounded-lg flex items-center justify-center text-sm text-muted hover:border-[#22C55E] hover:text-[#22C55E] transition-colors no-underline"
  aria-label="WhatsApp"
  >
  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" width="18" height="18">
@@ -132,7 +132,7 @@ export default function Footer() {
  </a>
  <span className="flex items-center gap-2 text-sm text-muted">
  <MapPin size={14} />
- Bengaluru · Remote-first
+ Bengaluru
  </span>
  </div>
  <Link

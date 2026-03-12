@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 export default function ContactForm({
  compact = false,
@@ -8,29 +9,37 @@ export default function ContactForm({
 }) {
  const [submitted, setSubmitted] = useState(false);
 
- const handleSubmit = async (e) => {
- e.preventDefault();
- const form = e.target;
- const formData = new FormData(form);
- const biz = formData.get("business");
- const phone = formData.get("phone");
- if (!biz || !phone) return;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    
+    const data = {
+      name: formData.get("name"),
+      business: formData.get("business"),
+      phone: formData.get("phone"),
+      email: formData.get("email"),
+      goal: formData.get("goal"),
+      budget: formData.get("budget"),
+      source: source || formData.get("source") || "Contact Form"
+    };
 
- try {
- const response = await fetch(form.action, {
- method: form.method,
- body: formData,
- headers: {
- Accept: "application/json",
- },
- });
- if (response.ok) {
- setSubmitted(true);
- }
- } catch (error) {
- console.error(error);
- }
- };
+    if (!data.business || !data.phone) return;
+
+    try {
+      const { error } = await supabase
+        .from('contacts')
+        .insert([data]);
+
+      if (!error) {
+        setSubmitted(true);
+      } else {
+        console.error('Supabase error:', error);
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+    }
+  };
 
  if (submitted) {
  return (
