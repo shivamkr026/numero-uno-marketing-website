@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-base: #0D0F14;
+  --color-base-dark: #0A0C11;
+  --color-base-deep: #070810;
+  --color-card-surface: #13161F;
+  --color-primary: #4F6EF7;
+  --color-primary-light: #6B8AFF;
+  --color-navy: #0D0F14;
+  --color-navy-2: #0A0C11;
+  --color-blue: #4F6EF7;
+  --color-blue-dark: #6B8AFF;
+  --color-white: #FFFFFF;
+  --color-secondary: #E0E0E0;
+  --color-muted: #BEBEBE;
+  --color-border: #FFFFFF0F;
+  --font-heading: 'Sora', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--color-base-dark); }
+::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: 2px; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-base);
+  color: var(--color-white);
+  overflow-x: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Selection */
+::selection {
+  background: rgba(79, 110, 247, 0.3);
+  color: var(--color-white);
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Form elements */
+input, select, textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1.5px solid var(--color-border);
+  border-radius: 10px;
+  padding: 13px 16px;
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: rgba(79,110,247,0.5);
+  background: rgba(255,255,255,0.07);
+}
+
+select option {
+  background: var(--color-base-dark);
+}
+
+label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 6px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* Custom Effects */
+.cta-glow {
+  box-shadow: 0 0 24px rgba(79,110,247,0.28), 0 4px 16px rgba(0,0,0,0.3);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.cta-glow:hover {
+  box-shadow: 0 0 36px rgba(79,110,247,0.42), 0 8px 24px rgba(0,0,0,0.35);
+  transform: translateY(-2px);
+}
+
+.sitewide-card {
+  background: var(--color-card-surface, #13161F);
+  border: 1px solid var(--color-border, rgba(255,255,255,0.06));
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.sitewide-card:hover {
+  border: 1px solid rgba(79,110,247,0.25);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(79,110,247,0.1);
+}
