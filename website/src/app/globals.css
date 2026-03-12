@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme inline {
@@ -15,8 +16,8 @@
   --color-secondary: #E0E0E0;
   --color-muted: #BEBEBE;
   --color-border: #FFFFFF0F;
-  --font-heading: 'Sora', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
 }
 
 /* Scrollbar */
@@ -30,6 +31,9 @@ html {
 
 body {
   font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
   background: var(--color-base);
   color: var(--color-white);
   overflow-x: hidden;
@@ -52,6 +56,25 @@ body::after {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Navbar links, buttons, badges, labels, stats */
+.nav-link {
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+button, .btn, .badge, label, .stat-value, .stat-label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.05em;
 }
 
 /* Selection */

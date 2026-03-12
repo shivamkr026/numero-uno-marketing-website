@@ -56,18 +56,16 @@ export default function TestimonialsPage() {
  <div className="w-10 h-10 bg-gradient-to-br from-blue to-blue-dark rounded-full flex items-center justify-center text-white text-sm cta-btn">
  {t.name[0]}
  </div>
- <div>
- <div className=" text-sm font-bold">
- {t.name}
- </div>
- <div className="text-xs text-muted">{t.role}</div>
- </div>
- <div className="ml-auto text-amber text-sm">
- {"★".repeat(t.rating)}
- </div>
- </div>
- </div>
- ))}
+            <div>
+              <div className="text-sm font-bold">{t.name}</div>
+              <div className="text-xs text-muted">{t.role}</div>
+            </div>
+            <div className="ml-auto text-yellow-500 text-sm">
+              {"★".repeat(t.rating)}
+            </div>
+          </div>
+        </div>
+      ))}
  </div>
  </div>
  </section>
